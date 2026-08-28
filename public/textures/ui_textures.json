@@ -1,0 +1,11 @@
+{
+    "textures": [
+        "textures/ui/selector.png",
+        "textures/ui/intel_00.png",
+        "textures/ui/intel_01.png",
+        "textures/ui/verses_00.png",
+        "textures/ui/verses_01.png",
+        "textures/ui/system_00.png",
+        "textures/ui/system_01.png"
+    ]
+}

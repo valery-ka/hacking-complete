@@ -1,0 +1,238 @@
+import { EnemyConfig } from "types/enemy/Enemies.types";
+
+import { SURFACE_SETTINGS } from "./settings";
+import { generateDirections } from "utils/math";
+
+const enemyArrow = (p: { x: number; y: number; z: number }, r: number, d: number): EnemyConfig => ({
+    trigger: { pool: { self: 10, to_trigger: 100 } },
+    enemy_type: "arrow",
+    on_spawn: { position: p, rotation_y: r, hp: 2, delay: d },
+    ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+    is_inside_ground: false,
+    follow_player: { enabled: true, speed: 2.0 },
+    triggers_by_player: [true, false],
+    rotate_to_player: { enabled: false },
+    auto_rotation: { enabled: true, angular_speed: Math.PI / 1 },
+    animation: { enabled: false },
+    shooter: {
+        enabled: true,
+        initial_delay: 1000 / 4,
+        cooldown: 1000 / 4,
+        pattern: [[1, 2, 3]],
+        spreading: 0.001,
+        directions: [0],
+    },
+});
+
+const enemyArrowShield = (
+    p: { x: number; y: number; z: number },
+    r: number,
+    d: number,
+    pool: number,
+): EnemyConfig => ({
+    trigger: { pool: { self: pool, to_trigger: 200 } },
+    enemy_type: "arrow-shield",
+    on_spawn: { position: p, rotation_y: r, hp: 2, delay: d },
+    ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+    is_inside_ground: false,
+    follow_player: { enabled: true, speed: 2.0 },
+    triggers_by_player: [true, false],
+    rotate_to_player: { enabled: false },
+    auto_rotation: { enabled: true, angular_speed: Math.PI / 1 },
+    animation: { enabled: false },
+    shooter: {
+        enabled: true,
+        initial_delay: 1000 / 4,
+        cooldown: 1000 / 4,
+        pattern: [[1, 2, 3]],
+        spreading: 0.001,
+        directions: [0],
+    },
+});
+
+const enemyArrowShield2 = (
+    p: { x: number; y: number; z: number },
+    r: number,
+    d: number,
+    pool: number,
+): EnemyConfig => ({
+    trigger: { pool: { self: pool, to_trigger: 300 } },
+    enemy_type: "arrow-shield-2",
+    on_spawn: { position: p, rotation_y: r, hp: 2, delay: d },
+    ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+    is_inside_ground: false,
+    follow_player: { enabled: true, speed: 2.0 },
+    triggers_by_player: [true, false],
+    rotate_to_player: { enabled: false },
+    auto_rotation: { enabled: true, angular_speed: Math.PI / 1 },
+    animation: { enabled: false },
+    shooter: {
+        enabled: true,
+        initial_delay: 1000 / 4,
+        cooldown: 1000 / 4,
+        pattern: [
+            [1, 2, 3],
+            [1, 2, 3],
+        ],
+        spreading: 0.001,
+        directions: generateDirections(1, Math.PI / 2),
+    },
+});
+
+const enemyArrowShield3 = (
+    p: { x: number; y: number; z: number },
+    r: number,
+    d: number,
+    pool: number,
+): EnemyConfig => ({
+    trigger: { pool: { self: pool, to_trigger: 400 } },
+    enemy_type: "arrow-shield-3",
+    on_spawn: { position: p, rotation_y: r, hp: 2, delay: d },
+    ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+    is_inside_ground: false,
+    follow_player: { enabled: true, speed: 2.0 },
+    triggers_by_player: [true, false],
+    rotate_to_player: { enabled: false },
+    auto_rotation: { enabled: true, angular_speed: Math.PI / 1 },
+    animation: { enabled: false },
+    shooter: {
+        enabled: true,
+        initial_delay: 1000 / 4,
+        cooldown: 1000 / 4,
+        pattern: [
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+        ],
+        spreading: 0.001,
+        directions: [-Math.PI / 2, 0, Math.PI / 2],
+    },
+});
+
+export const enemies: EnemyConfig[] = [
+    //
+    enemyArrow({ x: 2.308, y: 5.65, z: -28.354 }, 0.018, 0.25),
+    enemyArrow({ x: 22.371, y: 5.65, z: -15.369 }, 2.171, 0.5),
+    enemyArrow({ x: 32.278, y: 5.65, z: -31.22 }, 2.337, 0.75),
+    enemyArrow({ x: 30.583, y: 5.65, z: -21.992 }, 2.066, 1),
+    enemyArrow({ x: 31.901, y: 5.65, z: -45.671 }, 0.875, 1.25),
+    enemyArrow({ x: 29.952, y: 5.65, z: -55.047 }, 1.101, 1.5),
+    enemyArrow({ x: 14.001, y: 5.65, z: -58.695 }, 1.896, 1.75),
+    enemyArrow({ x: 5.488, y: 5.65, z: -64.5 }, 2.017, 2),
+    enemyArrow({ x: -9.513, y: 5.65, z: -64.3 }, 1.828, 2.25),
+    enemyArrow({ x: -27.387, y: 5.65, z: -64.991 }, 1.146, 2.5),
+    enemyArrow({ x: -26.958, y: 5.65, z: -48.581 }, 2.069, 2.75),
+    enemyArrow({ x: -31.166, y: 5.65, z: -38.855 }, 1.597, 3),
+    enemyArrow({ x: -26.448, y: 5.65, z: -29.077 }, 1.114, 3.25),
+    enemyArrow({ x: -19.351, y: 5.65, z: -18.647 }, 1.597, 3.5),
+    enemyArrow({ x: -7.97, y: 5.65, z: -18.945 }, 1.284, 3.75),
+    enemyArrow({ x: 1.353, y: 5.65, z: -23.144 }, 2.006, 4),
+    enemyArrow({ x: -6.225, y: 5.65, z: -36.443 }, 1.597, 4.25),
+    enemyArrow({ x: -3.229, y: 5.65, z: -43.749 }, 1.597, 4.5),
+    enemyArrow({ x: 0.191, y: 5.65, z: -37.987 }, 1.597, 4.75),
+    enemyArrow({ x: 6.869, y: 5.65, z: -42.999 }, 1.597, 5),
+    enemyArrow({ x: 7.044, y: 5.65, z: -36.319 }, 1.597, 5.25),
+    enemyArrow({ x: 11.564, y: 5.65, z: -40.923 }, 1.597, 5.5),
+    enemyArrow({ x: 19.457, y: 5.65, z: -41.129 }, 1.597, 5.75),
+    enemyArrow({ x: 2.695, y: 5.65, z: -51.032 }, 3.088, 6),
+    enemyArrow({ x: -13.932, y: 5.65, z: -41.123 }, -1.628, 6.25),
+    enemyArrow({ x: 12.663, y: 5.65, z: -21.524 }, 1.319, 6.5),
+    enemyArrow({ x: -19.121, y: 5.65, z: -62.028 }, 0.815, 6.75),
+    enemyArrow({ x: -3.614, y: 5.65, z: -58.235 }, 1.83, 7),
+    enemyArrow({ x: 26.265, y: 5.65, z: -65.347 }, 1.247, 7.25),
+    //
+
+    //
+    enemyArrowShield({ x: -66.347, y: 5.65, z: -31.637 }, 2.287, 0.25, 20),
+    enemyArrowShield({ x: -60.879, y: 5.65, z: -39.121 }, 2.343, 0.5, 20),
+    enemyArrowShield({ x: -54.142, y: 5.65, z: -33.038 }, -0.923, 0.75, 20),
+    enemyArrowShield({ x: -54.352, y: 5.65, z: -44.732 }, 1.366, 1, 20),
+    enemyArrowShield({ x: -47.382, y: 5.65, z: -36.776 }, 0.772, 1.25, 20),
+    enemyArrowShield({ x: -47.594, y: 5.65, z: -48.584 }, 1.141, 1.5, 20),
+    enemyArrowShield({ x: -66.272, y: 5.65, z: -49.694 }, 1.247, 1.75, 20),
+    //next
+    enemyArrowShield({ x: -65.421, y: 5.65, z: -2.467 }, 1.925, 0.25, 21),
+    enemyArrowShield({ x: -60.101, y: 5.65, z: -7.199 }, 0.43, 0.5, 21),
+    enemyArrowShield({ x: -55.102, y: 5.65, z: -0.854 }, -0.731, 0.75, 21),
+    enemyArrowShield({ x: -47.455, y: 5.65, z: -9.038 }, -2.518, 1, 21),
+    enemyArrowShield({ x: -47.347, y: 5.65, z: -3.054 }, 1.81, 1.25, 21),
+    enemyArrowShield({ x: -44.244, y: 5.65, z: 13.711 }, -2.676, 1.5, 21),
+    enemyArrowShield({ x: -25.637, y: 5.65, z: 13.376 }, -3.08, 1.75, 21),
+    enemyArrowShield({ x: -31.247, y: 5.65, z: 7.856 }, -1.339, 2.0, 21),
+    enemyArrowShield({ x: -37.298, y: 5.65, z: 13.474 }, 2.107, 2.25, 21),
+    enemyArrowShield({ x: -43.581, y: 5.65, z: 5.96 }, 1.689, 2.5, 21),
+    //next
+    enemyArrowShield({ x: -61.029, y: 5.65, z: 44.161 }, 1.546, 0.25, 22),
+    enemyArrowShield({ x: -56.693, y: 5.65, z: 36.813 }, -2.306, 0.5, 22),
+    enemyArrowShield({ x: -48.888, y: 5.65, z: 42.497 }, -2.726, 0.75, 22),
+    enemyArrowShield({ x: -40.109, y: 5.65, z: 36.694 }, 1.973, 1, 22),
+    enemyArrowShield({ x: -32.795, y: 5.65, z: 43.768 }, 2.853, 1.25, 22),
+    enemyArrowShield({ x: -26.613, y: 5.65, z: 39.558 }, 2.821, 1.5, 22),
+    enemyArrowShield({ x: -26.746, y: 5.65, z: 32.084 }, 1.91, 1.75, 22),
+    enemyArrowShield({ x: -36.129, y: 5.65, z: 27.973 }, -1.936, 2.0, 22),
+    enemyArrowShield({ x: -48.411, y: 5.65, z: 33.075 }, -0.662, 2.25, 22),
+    enemyArrowShield({ x: -58.05, y: 5.65, z: 27.114 }, -1.925, 2.5, 22),
+    //
+
+    //
+    enemyArrowShield2({ x: -20.299, y: 5.65, z: 61.671 }, 1.304, 0.25, 30),
+    enemyArrowShield2({ x: -16.765, y: 5.65, z: 61.608 }, -0.939, 0.5, 30),
+    enemyArrowShield2({ x: -28.156, y: 5.65, z: 61.813 }, -0.51, 0.75, 30),
+    enemyArrowShield2({ x: -24.41, y: 5.65, z: 61.745 }, 0.659, 1, 30),
+    enemyArrowShield2({ x: -13.063, y: 5.65, z: 61.685 }, -0.94, 1.25, 30),
+    //next
+    enemyArrowShield2({ x: 4.244, y: 5.65, z: 34.305 }, 2.554, 0.25, 31),
+    enemyArrowShield2({ x: 2.112, y: 5.65, z: 45.617 }, 2.322, 0.5, 31),
+    enemyArrowShield2({ x: 8.129, y: 5.65, z: 41.005 }, -3.006, 0.75, 31),
+    enemyArrowShield2({ x: -4.278, y: 5.65, z: 35.446 }, 2.797, 1.0, 31),
+    enemyArrowShield2({ x: -7.956, y: 5.65, z: 41.927 }, 0.018, 1.25, 31),
+    enemyArrowShield2({ x: -7.79, y: 5.65, z: 51.141 }, -1.564, 1.5, 31),
+    enemyArrowShield2({ x: -2.269, y: 5.65, z: 51.042 }, -1.52, 1.75, 31),
+    enemyArrowShield2({ x: -2.114, y: 5.65, z: 59.661 }, -2.096, 2.0, 31),
+    enemyArrowShield2({ x: 7.196, y: 5.65, z: 50.121 }, -1.366, 2.25, 31),
+    enemyArrowShield2({ x: 4.999, y: 5.65, z: 56.025 }, 2.125, 2.5, 31),
+    enemyArrowShield2({ x: 8.821, y: 5.65, z: 63.592 }, 2.14, 2.75, 31),
+    enemyArrowShield2({ x: -7.406, y: 5.65, z: 63.884 }, 1.228, 3.0, 31),
+    enemyArrowShield2({ x: -1.786, y: 5.65, z: 69.081 }, -0.853, 3.25, 31),
+    enemyArrowShield2({ x: 4.017, y: 5.65, z: 65.062 }, 2.064, 3.5, 31),
+    //
+
+    //
+    enemyArrowShield3({ x: 44.482, y: 5.65, z: 58.065 }, 3.101, 0.25, 40),
+    enemyArrowShield3({ x: 26.365, y: 5.65, z: 67.845 }, -2.572, 0.5, 40),
+    enemyArrowShield3({ x: 33.634, y: 5.65, z: 61.354 }, -0.516, 0.75, 40),
+    enemyArrowShield3({ x: 41.061, y: 5.65, z: 68.064 }, -2.547, 1.0, 40),
+    enemyArrowShield3({ x: 40.677, y: 5.65, z: 46.722 }, -1.553, 1.25, 40),
+    enemyArrowShield3({ x: 41.997, y: 5.65, z: 37.049 }, 2.463, 1.5, 40),
+    enemyArrowShield3({ x: 27.545, y: 5.65, z: 51.154 }, 0.823, 1.75, 40),
+    enemyArrowShield3({ x: 31.536, y: 5.65, z: 39.849 }, 2.909, 2.0, 40),
+    //next
+    enemyArrowShield3({ x: 32.037, y: 5.65, z: 21.122 }, 0.891, 0.25, 41),
+    enemyArrowShield3({ x: 39.244, y: 5.65, z: 12.85 }, 2.734, 0.5, 41),
+    enemyArrowShield3({ x: 11.4, y: 5.65, z: 3.184 }, 0.19, 0.75, 41),
+    enemyArrowShield3({ x: 19.55, y: 5.65, z: -4.56 }, 0.272, 1.0, 41),
+    enemyArrowShield3({ x: 12.398, y: 5.65, z: -4.431 }, -0.943, 1.25, 41),
+    enemyArrowShield3({ x: 28.76, y: 5.65, z: 2.599 }, 2.571, 1.5, 41),
+    enemyArrowShield3({ x: 37.769, y: 5.65, z: -4.421 }, -3.039, 1.75, 41),
+    enemyArrowShield3({ x: 44.09, y: 5.65, z: 3.624 }, -2.061, 2.0, 41),
+    //
+
+    {
+        trigger: { pool: { self: 0, to_trigger: 1000 } },
+        enemy_type: "sphere",
+        on_spawn: {
+            position: { x: -9.5, y: 5.65, z: -1 },
+            rotation_y: Math.PI,
+            hp: 5,
+            spawn_animation: false,
+        },
+        ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+        is_inside_ground: false,
+        follow_player: { enabled: false, speed: 2.0 },
+        triggers_by_player: [true, false],
+        rotate_to_player: { enabled: true },
+        auto_rotation: { enabled: false },
+        animation: { enabled: false },
+        shooter: { enabled: false, pattern: [[0, 0, 1]] },
+    },
+];

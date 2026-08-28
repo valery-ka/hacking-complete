@@ -1,0 +1,796 @@
+{
+    "durations": [
+        {
+            "00-10": {
+                "one_shot": 5.2259375,
+                "full": 125.21795833333333
+            }
+        },
+        {
+            "11-21": {
+                "one_shot": 14.117729166666667,
+                "full": 127.05958333333334
+            }
+        },
+        {
+            "22-32": {
+                "one_shot": 12.52425,
+                "full": 108.00325
+            }
+        },
+        {
+            "33-43": {
+                "one_shot": 51.429291666666664,
+                "full": 184.28660416666668
+            }
+        },
+        {
+            "44-54": {
+                "one_shot": 13.183125,
+                "full": 138.1819375
+            }
+        },
+        {
+            "55-58": {
+                "one_shot": 8.000708333333334,
+                "full": 118.00089583333333
+            }
+        },
+        {
+            "59-59": {
+                "one_shot": 18.651416666666666,
+                "full": 120.00070833333334
+            }
+        },
+        {
+            "62-62": {
+                "one_shot": 0.431,
+                "full": 24.827916666666667
+            }
+        },
+        {
+            "61-63": {
+                "one_shot": 0.8954166666666666,
+                "full": 92.4444375
+            }
+        },
+        {
+            "65-65": {
+                "one_shot": 0.0,
+                "full": 68.57141666666666
+            }
+        },
+        {
+            "66-66": {
+                "one_shot": 0.0,
+                "full": 91.4285625
+            }
+        },
+        {
+            "67-67": {
+                "one_shot": 0.0,
+                "full": 70.95727083333334
+            }
+        },
+        {
+            "68-68": {
+                "one_shot": 0.0,
+                "full": 73.14285416666667
+            }
+        },
+        {
+            "69-69": {
+                "one_shot": 0.0,
+                "full": 111.78085416666667
+            }
+        },
+        {
+            "71-71": {
+                "one_shot": 10000,
+                "full": 10000
+            }
+        },
+        {
+            "72-76": {
+                "one_shot": 26.3023958333333322,
+                "full": 105.20670833333334
+            }
+        },
+        {
+            "76-76": {
+                "one_shot": 0.0,
+                "full": 6.577041666666666
+            }
+        },
+        {
+            "77-77-1": {
+                "one_shot": 9.261854166666666,
+                "full": 84.93858333333333
+            }
+        },
+        {
+            "77-77-2": {
+                "one_shot": 0.0,
+                "full": 44.12660416666667
+            }
+        },
+        {
+            "78": {
+                "one_shot": 0.0,
+                "full": 80.0014375
+            }
+        },
+        {
+            "79": {
+                "one_shot": 0.0,
+                "full": 160
+            }
+        },
+        {
+            "80": {
+                "one_shot": 0.0,
+                "full": 88.28660416666666
+            }
+        },
+        {
+            "81": {
+                "one_shot": 0.0,
+                "full": 61.44
+            }
+        },
+        {
+            "82": {
+                "one_shot": 0.0,
+                "full": 96.50066666666666
+            }
+        },
+        {
+            "83": {
+                "one_shot": 0.0,
+                "full": 151.41877083333333
+            }
+        },
+        {
+            "Menu-I": {
+                "one_shot": 0.0,
+                "full": 137.1588125
+            }
+        },
+        {
+            "Menu-II": {
+                "one_shot": 0.0,
+                "full": 97.90547916666667
+            }
+        },
+        {
+            "Menu-III": {
+                "one_shot": 0.0,
+                "full": 127.78085416666667
+            }
+        },
+        {
+            "Menu-IV": {
+                "one_shot": 0.0,
+                "full": 15.995645833333333
+            }
+        },
+        {
+            "Menu-V": {
+                "one_shot": 0.0,
+                "full": 19.205791666666666
+            }
+        }
+    ],
+    "music": [
+        {
+            "00-10": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/00-10/Game/bass/8_bit/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/bass/8_bit/full/Pascal.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/00-10/Game/bass/original/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/bass/original/full/Pascal.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/00-10/Game/drums/8_bit/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/drums/8_bit/full/Pascal.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/00-10/Game/drums/original/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/drums/original/full/Pascal.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/00-10/Game/instruments/8_bit/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/instruments/8_bit/full/Pascal.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/00-10/Game/instruments/original/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/instruments/original/full/Pascal.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/00-10/Game/vocals/8_bit/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/vocals/8_bit/full/Pascal.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/00-10/Game/vocals/original/one_shot/Pascal.ogg",
+                        "full": "sounds/music/00-10/Game/vocals/original/full/Pascal.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "11-21": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/11-21/Game/bass/8_bit/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/bass/8_bit/full/End_Of_The_Unknown.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/11-21/Game/bass/original/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/bass/original/full/End_Of_The_Unknown.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/11-21/Game/drums/8_bit/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/drums/8_bit/full/End_Of_The_Unknown.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/11-21/Game/drums/original/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/drums/original/full/End_Of_The_Unknown.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/11-21/Game/instruments/8_bit/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/instruments/8_bit/full/End_Of_The_Unknown.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/11-21/Game/instruments/original/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/instruments/original/full/End_Of_The_Unknown.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/11-21/Game/vocals/8_bit/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/vocals/8_bit/full/End_Of_The_Unknown.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/11-21/Game/vocals/original/one_shot/End_Of_The_Unknown.ogg",
+                        "full": "sounds/music/11-21/Game/vocals/original/full/End_Of_The_Unknown.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "22-32": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/22-32/Game/bass/8_bit/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/bass/8_bit/full/Dark_Colossus.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/22-32/Game/bass/original/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/bass/original/full/Dark_Colossus.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/22-32/Game/drums/8_bit/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/drums/8_bit/full/Dark_Colossus.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/22-32/Game/drums/original/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/drums/original/full/Dark_Colossus.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/22-32/Game/instruments/8_bit/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/instruments/8_bit/full/Dark_Colossus.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/22-32/Game/instruments/original/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/instruments/original/full/Dark_Colossus.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/22-32/Game/vocals/8_bit/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/vocals/8_bit/full/Dark_Colossus.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/22-32/Game/vocals/original/one_shot/Dark_Colossus.ogg",
+                        "full": "sounds/music/22-32/Game/vocals/original/full/Dark_Colossus.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "33-43": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/33-43/Game/bass/8_bit/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/bass/8_bit/full/Possessed_By_Disease.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/33-43/Game/bass/original/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/bass/original/full/Possessed_By_Disease.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/33-43/Game/drums/8_bit/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/drums/8_bit/full/Possessed_By_Disease.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/33-43/Game/drums/original/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/drums/original/full/Possessed_By_Disease.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/33-43/Game/instruments/8_bit/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/instruments/8_bit/full/Possessed_By_Disease.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/33-43/Game/instruments/original/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/instruments/original/full/Possessed_By_Disease.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/33-43/Game/vocals/8_bit/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/vocals/8_bit/full/Possessed_By_Disease.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/33-43/Game/vocals/original/one_shot/Possessed_By_Disease.ogg",
+                        "full": "sounds/music/33-43/Game/vocals/original/full/Possessed_By_Disease.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "44-54": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/44-54/Game/bass/8_bit/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/bass/8_bit/full/Dependent_Weakling.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/44-54/Game/bass/original/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/bass/original/full/Dependent_Weakling.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/44-54/Game/drums/8_bit/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/drums/8_bit/full/Dependent_Weakling.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/44-54/Game/drums/original/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/drums/original/full/Dependent_Weakling.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/44-54/Game/instruments/8_bit/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/instruments/8_bit/full/Dependent_Weakling.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/44-54/Game/instruments/original/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/instruments/original/full/Dependent_Weakling.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/44-54/Game/vocals/8_bit/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/vocals/8_bit/full/Dependent_Weakling.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/44-54/Game/vocals/original/one_shot/Dependent_Weakling.ogg",
+                        "full": "sounds/music/44-54/Game/vocals/original/full/Dependent_Weakling.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "55-58": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/55-58/Game/bass/8_bit/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/bass/8_bit/full/Amusement_Park.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/55-58/Game/bass/original/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/bass/original/full/Amusement_Park.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/55-58/Game/drums/8_bit/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/drums/8_bit/full/Amusement_Park.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/55-58/Game/drums/original/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/drums/original/full/Amusement_Park.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/55-58/Game/instruments/8_bit/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/instruments/8_bit/full/Amusement_Park.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/55-58/Game/instruments/original/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/instruments/original/full/Amusement_Park.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/55-58/Game/vocals/8_bit/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/vocals/8_bit/full/Amusement_Park.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/55-58/Game/vocals/original/one_shot/Amusement_Park.ogg",
+                        "full": "sounds/music/55-58/Game/vocals/original/full/Amusement_Park.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "59-59": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/59-59/Game/bass/8_bit/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/bass/8_bit/full/A_Beautiful_Song.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/59-59/Game/bass/original/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/bass/original/full/A_Beautiful_Song.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/59-59/Game/drums/8_bit/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/drums/8_bit/full/A_Beautiful_Song.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/59-59/Game/drums/original/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/drums/original/full/A_Beautiful_Song.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/59-59/Game/instruments/8_bit/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/instruments/8_bit/full/A_Beautiful_Song.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/59-59/Game/instruments/original/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/instruments/original/full/A_Beautiful_Song.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/59-59/Game/vocals/8_bit/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/vocals/8_bit/full/A_Beautiful_Song.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/59-59/Game/vocals/original/one_shot/A_Beautiful_Song.ogg",
+                        "full": "sounds/music/59-59/Game/vocals/original/full/A_Beautiful_Song.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "62-62": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/62-62/Game/bass/8_bit/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/bass/8_bit/full/Dance_Of_The_Evanescent.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/62-62/Game/bass/original/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/bass/original/full/Dance_Of_The_Evanescent.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/62-62/Game/drums/8_bit/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/drums/8_bit/full/Dance_Of_The_Evanescent.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/62-62/Game/drums/original/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/drums/original/full/Dance_Of_The_Evanescent.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/62-62/Game/instruments/8_bit/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/instruments/8_bit/full/Dance_Of_The_Evanescent.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/62-62/Game/instruments/original/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/instruments/original/full/Dance_Of_The_Evanescent.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/62-62/Game/vocals/8_bit/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/vocals/8_bit/full/Dance_Of_The_Evanescent.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/62-62/Game/vocals/original/one_shot/Dance_Of_The_Evanescent.ogg",
+                        "full": "sounds/music/62-62/Game/vocals/original/full/Dance_Of_The_Evanescent.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "61-63": {
+                "bass": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/61-63/Game/bass/8_bit/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/bass/8_bit/full/Shadowlord.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/61-63/Game/bass/original/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/bass/original/full/Shadowlord.ogg"
+                    }
+                },
+                "drums": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/61-63/Game/drums/8_bit/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/drums/8_bit/full/Shadowlord.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/61-63/Game/drums/original/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/drums/original/full/Shadowlord.ogg"
+                    }
+                },
+                "instruments": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/61-63/Game/instruments/8_bit/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/instruments/8_bit/full/Shadowlord.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/61-63/Game/instruments/original/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/instruments/original/full/Shadowlord.ogg"
+                    }
+                },
+                "vocals": {
+                    "8-bit": {
+                        "one_shot": "sounds/music/61-63/Game/vocals/8_bit/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/vocals/8_bit/full/Shadowlord.ogg"
+                    },
+                    "original": {
+                        "one_shot": "sounds/music/61-63/Game/vocals/original/one_shot/Shadowlord.ogg",
+                        "full": "sounds/music/61-63/Game/vocals/original/full/Shadowlord.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "65-65": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/65-65/Game/instruments/original/full/Galgaliel.ogg"
+                    },
+                    "8-bit": {
+                        "full": "sounds/music/65-65/Game/instruments/8_bit/full/Galgaliel.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "66-66": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/66-66/Game/instruments/original/full/Zophiel.ogg"
+                    },
+                    "8-bit": {
+                        "full": "sounds/music/66-66/Game/instruments/8_bit/full/Zophiel.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "67-67": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/67-67/Game/instruments/original/full/Almisael.ogg"
+                    },
+                    "8-bit": {
+                        "full": "sounds/music/67-67/Game/instruments/8_bit/full/Almisael.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "68-68": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/68-68/Game/instruments/original/full/Egregori.ogg"
+                    },
+                    "8-bit": {
+                        "full": "sounds/music/68-68/Game/instruments/8_bit/full/Egregori.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "69-69": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/69-69/Game/instruments/original/full/Abdiel.ogg"
+                    },
+                    "8-bit": {
+                        "full": "sounds/music/69-69/Game/instruments/8_bit/full/Abdiel.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "71-71": {
+                "instruments": {
+                    "original": {
+                        "one_shot": "sounds/music/71-71/Game/instruments/8_bit/one_shot/Final_Song.ogg",
+                        "full": "sounds/music/71-71/Game/instruments/8_bit/full/Final_Song.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "72-76": {
+                "instruments": {
+                    "original": {
+                        "one_shot": "sounds/music/72-76/Game/instruments/original/one_shot/Impatience.ogg",
+                        "full": "sounds/music/72-76/Game/instruments/original/full/Impatience.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "76-76": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/76-76/Game/instruments/original/full/Impatience-2.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "77-77-1": {
+                "instruments": {
+                    "original": {
+                        "one_shot": "sounds/music/77-77-1/Game/instruments/original/one_shot/Fate.ogg",
+                        "full": "sounds/music/77-77-1/Game/instruments/original/full/Fate.ogg"
+                    },
+                    "8-bit": {
+                        "one_shot": "sounds/music/77-77-1/Game/instruments/8_bit/one_shot/Fate.ogg",
+                        "full": "sounds/music/77-77-1/Game/instruments/8_bit/full/Fate.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "77-77-2": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/77-77-2/Game/vocals/original/full/Fate.ogg"
+                    },
+                    "8-bit": {
+                        "full": "sounds/music/77-77-2/Game/vocals/8_bit/full/Fate.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "78": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/78/Game/instruments/original/full/Durka_Raz.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "79": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/79/Game/instruments/original/full/Durka_Dva.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "80": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/80/Game/instruments/original/full/Durka_Tri.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "81": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/81/Game/instruments/original/full/Durka_Chetiry.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "82": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/82/Game/instruments/original/full/Durka_Five.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "83": {
+                "vocals": {
+                    "original": {
+                        "full": "sounds/music/83/Game/instruments/original/full/Queen.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "Menu-I": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/Menu/1.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "Menu-II": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/Menu/2.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "Menu-III": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/Menu/3.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "Menu-IV": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/Menu/4.ogg"
+                    }
+                }
+            }
+        },
+        {
+            "Menu-V": {
+                "instruments": {
+                    "original": {
+                        "full": "sounds/music/Menu/5.ogg"
+                    }
+                }
+            }
+        }
+    ]
+}

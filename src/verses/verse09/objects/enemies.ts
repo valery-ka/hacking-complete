@@ -1,0 +1,101 @@
+import { EnemyConfig } from "types/enemy/Enemies.types";
+
+import { SURFACE_SETTINGS } from "./settings";
+import { generateDirections } from "utils/math";
+
+export const enemies: EnemyConfig[] = [
+    {
+        trigger: { pool: { self: 0, to_trigger: 100 } },
+        enemy_type: "sphere",
+        on_spawn: {
+            position: { x: 0, y: 5.65, z: 2 },
+            rotation_y: Math.PI,
+            hp: 5,
+            spawn_animation: false,
+        },
+        ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+        is_inside_ground: false,
+        follow_player: { enabled: false },
+        triggers_by_player: [false, false],
+        rotate_to_player: { enabled: false },
+        auto_rotation: { enabled: true, angular_speed: -Math.PI / 2 },
+        animation: {
+            enabled: true,
+            name: "circle",
+            params: {
+                plane: "xz",
+                radius: 4,
+                speed: 70,
+                frames: 180,
+            },
+        },
+        shooter: {
+            enabled: true,
+            initial_delay: 500,
+            cooldown: 500,
+            switch_shooter: { enabled: false, delay: [500, 100] },
+            pattern: [
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+            ],
+            spreading: 0.001,
+            directions: generateDirections(3),
+        },
+    },
+    {
+        trigger: { pool: { self: 10, to_trigger: 1000 } },
+        enemy_type: "sphere",
+        on_spawn: {
+            position: { x: 0, y: 5.65, z: 2 },
+            rotation_y: Math.PI,
+            hp: 5,
+            spawn_animation: false,
+        },
+        ground: { id: 0, physics: "plane", size: SURFACE_SETTINGS.h },
+        is_inside_ground: false,
+        follow_player: { enabled: false },
+        triggers_by_player: [true, false],
+        rotate_to_player: { enabled: false },
+        auto_rotation: { enabled: true, angular_speed: Math.PI / 2 },
+        animation: { enabled: false },
+        shooter: {
+            enabled: true,
+            initial_delay: 1000,
+            cooldown: 500,
+            switch_shooter: { enabled: false, delay: [500, 100] },
+            pattern: [
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+            ],
+            spreading: 0.001,
+            directions: generateDirections(3),
+        },
+        rage: {
+            enabled: true,
+            pool: 100,
+            initial_delay: 1000,
+            cooldown: 250,
+            switch_shooter: { enabled: false, delay: [500, 100] },
+            pattern: [
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0],
+            ],
+            spreading: 0.001,
+            directions: generateDirections(3),
+        },
+        shield: { enabled: true, pool: 100 },
+        change_behavior: { follow_player_pool: 100 },
+    },
+];

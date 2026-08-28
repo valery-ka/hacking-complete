@@ -1,0 +1,8 @@
+services:
+    frontend:
+        container_name: hacking-complete
+        build:
+            context: .
+        image: hacking-complete:latest
+        ports:
+            - "7777:7777"

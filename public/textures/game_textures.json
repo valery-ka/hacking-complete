@@ -1,0 +1,27 @@
+{
+    "textures": [
+        "textures/player/bullet/dispose_00.png",
+        "textures/player/bullet/dispose_01.png",
+        "textures/player/bullet/dispose_02.png",
+        "textures/player/bullet/dispose_03.png",
+        "textures/player/bullet/dispose_04.png",
+        "textures/enemy/bullet/dispose_00.png",
+        "textures/enemy/bullet/dispose_01.png",
+        "textures/enemy/bullet/dispose_02.png",
+        "textures/enemy/bullet/dispose_03.png",
+        "textures/enemy/bullet/dispose_04.png",
+        "textures/enemy/destroy/destroy_00.png",
+        "textures/enemy/destroy/destroy_01.png",
+        "textures/enemy/destroy/destroy_02.png",
+        "textures/enemy/destroy/destroy_03.png",
+        "textures/enemy/destroy/destroy_04.png",
+        "textures/enemy/destroy/destroy_05.png",
+        "textures/enemy/shield/destroy_00.png",
+        "textures/enemy/shield/destroy_01.png",
+        "textures/enemy/shield/destroy_02.png",
+        "textures/enemy/shield/destroy_03.png",
+        "textures/enemy/shield/destroy_04.png",
+        "textures/enemy/shield/destroy_05.png",
+        "textures/shared/flare.png"
+    ]
+}

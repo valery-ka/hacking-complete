@@ -1,0 +1,12 @@
+# Git LFS — game assets (audio, textures)
+public/sounds/**/*.ogg filter=lfs diff=lfs merge=lfs -text
+public/sounds/**/*.mp3 filter=lfs diff=lfs merge=lfs -text
+public/sounds/**/*.wav filter=lfs diff=lfs merge=lfs -text
+public/textures/**/*.png filter=lfs diff=lfs merge=lfs -text
+public/textures/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+public/textures/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+public/textures/**/*.webp filter=lfs diff=lfs merge=lfs -text
+
+# JSON manifests stay in regular git for readable diffs
+public/sounds/**/*.json -text
+public/textures/**/*.json -text

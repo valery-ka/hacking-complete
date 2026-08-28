@@ -1,0 +1,15 @@
+# node
+node_modules
+npm-debug.log
+
+# build artifacts
+build
+dist
+
+# git
+.git
+.gitignore
+
+# docker
+docker-compose*.yml
+Dockerfile

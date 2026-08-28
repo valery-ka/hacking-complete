@@ -1,0 +1,122 @@
+import { WallConfig } from "types/static/Wall.types";
+
+import { WALLS_COLOR } from "core_constants";
+
+const OFFSET = 18.25;
+
+const BOX_SIZE = 1.5;
+
+export const walls: WallConfig[] = [
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: 0, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    //
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: 1.85, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: 3.7, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: 5.55, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: 7.4, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: 9.25, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    //
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: -1.85, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: -3.7, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: -5.55, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: -7.4, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+    {
+        trigger: { pool: 50, spawn: { on_start: true, on_update: false } },
+        type: "box",
+        position: { x: 0, y: -9.25, z: -OFFSET },
+        size: { w: BOX_SIZE, h: BOX_SIZE, d: BOX_SIZE },
+        rotation: { x: 0, y: 0, z: 0 },
+        color: WALLS_COLOR,
+        solid: true,
+        is_lava: false,
+    },
+];

@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "ignoreDeprecations": "6.0",
+        "sourceMap": false,
+        "jsx": "react-jsx",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "target": "esnext",
+        "baseUrl": "./src",
+        "importHelpers": true,
+        "noUnusedLocals": false,
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "declaration": false,
+        "skipLibCheck": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "moduleResolution": "node",
+        "typeRoots": ["src/types/**/*.d.ts", "node_modules/@types"],
+        "types": ["node"]
+    },
+    "include": ["src", "./node_modules/@types", "src/**/*", "src/custom.d.ts"],
+    "exclude": ["node_modules", "**/*.js", "**/*.spec.ts", "**/*.spec.tsx", "build", "dev"]
+}
