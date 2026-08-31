@@ -247,6 +247,7 @@ export class Simone extends Enemy {
                 this.voiceEngine?.playSound("simone_laugh_3", 1.0, this.node);
 
                 this.showShield();
+                this.runToPlayer();
                 this.applyCameraPostProcess();
 
                 this.attackManager.add(
@@ -265,8 +266,8 @@ export class Simone extends Enemy {
                     if (elapsed_3 / TIME_3 >= 1) {
                         this.voiceEngine?.playSound("simone_ugh_1", 1.0, this.node);
                         this.hideShield();
+                        this.runAwayFromPlayer();
                         this.clearShieldObserver();
-                        this.switchFollowLogic();
                     }
                 });
                 break;
@@ -287,7 +288,7 @@ export class Simone extends Enemy {
                 );
 
                 let elapsed_1 = 0;
-                const TIME_1 = 7;
+                const TIME_1 = 6;
 
                 this.clearShieldObserver();
                 this.shieldObserver = this.scene.metadata.gameClock.subscribe((dt: number) => {
@@ -296,6 +297,7 @@ export class Simone extends Enemy {
                     if (elapsed_1 / TIME_1 >= 1) {
                         this.voiceEngine?.playSound("simone_ugh_1", 1.0, this.node);
                         this.hideShield();
+                        this.runAwayFromPlayer();
                         this.clearShieldObserver();
                     }
                 });
@@ -308,12 +310,13 @@ export class Simone extends Enemy {
                 this.voiceEngine?.playSound("simone_laugh_2", 1.0, this.node);
 
                 this.showShield();
+                this.runToPlayer();
                 this.applyCameraPostProcess();
 
                 this.attackManager.add(new BellAttack(this.scene, this.node, this.shooter));
 
                 let elapsed_2 = 0;
-                const TIME_2 = 2.5;
+                const TIME_2 = 3.5;
 
                 this.clearShieldObserver();
                 this.shieldObserver = this.scene.metadata.gameClock.subscribe((dt: number) => {
@@ -322,6 +325,7 @@ export class Simone extends Enemy {
                     if (elapsed_2 / TIME_2 >= 1) {
                         this.voiceEngine?.playSound("simone_ugh_2", 1.0, this.node);
                         this.hideShield();
+                        this.runAwayFromPlayer();
                         this.clearShieldObserver();
                     }
                 });
@@ -389,8 +393,12 @@ export class Simone extends Enemy {
         this.minimizeImpostor();
     }
 
-    private switchFollowLogic() {
+    private runAwayFromPlayer() {
         this.movement.setMoveSpeed(-2);
+    }
+
+    private runToPlayer() {
+        this.movement.setMoveSpeed(2);
     }
 
     private clearShieldObserver() {
