@@ -20,7 +20,7 @@ export class SelfDestruction {
     private inputMap: Record<string, boolean> = {};
 
     private holdStartTime: number | null = null;
-    private readonly requiredHoldTime: number = 1170;
+    private readonly requiredHoldTime: number = 1500;
 
     private hasTriggered: boolean = false;
 
