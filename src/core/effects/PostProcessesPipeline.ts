@@ -2,6 +2,8 @@ import { Scene, PostProcess, Vector2, Color3, Camera } from "@babylonjs/core";
 
 import { Nullable } from "types/common";
 
+import { REFERENCE_WIDTH } from "core_constants";
+
 type ActiveEffect = {
     pp: Nullable<PostProcess>;
     disable: () => void;
@@ -182,8 +184,14 @@ export class PostProcessesPipeline {
         );
 
         this.pixelationPostProcess.onApply = (effect) => {
-            effect.setFloat2("screenSize", engine.getRenderWidth(), engine.getRenderHeight());
-            effect.setFloat("pixelSize", pixelSize);
+            const width = engine.getRenderWidth();
+            const height = engine.getRenderHeight();
+
+            effect.setFloat2("screenSize", width, height);
+            effect.setFloat(
+                "pixelSize",
+                Math.max(1, Math.round(pixelSize * (width / REFERENCE_WIDTH))),
+            );
         };
     }
 

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import { createCurtain } from "assets/ui/ui-curtain";
 import { animateWiggle, createBgCircles, createBgLines } from "assets/ui/background-decoration";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 interface IUseMenuDecorations {
     texturesLoaded: boolean;
@@ -15,8 +16,8 @@ export const useMenuDecorations = ({ texturesLoaded }: IUseMenuDecorations) => {
 
         const uiDecorations = AdvancedDynamicTexture.CreateFullscreenUI("UI-Decorations");
 
-        uiDecorations.idealWidth = 2560;
-        uiDecorations.idealHeight = 1440;
+        uiDecorations.idealWidth = REFERENCE_WIDTH;
+        uiDecorations.idealHeight = REFERENCE_HEIGHT;
 
         const curtainTop = createCurtain(uiDecorations, 105, 0);
         const curtainBottom = createCurtain(uiDecorations, -105, 1);

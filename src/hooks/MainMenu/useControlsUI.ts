@@ -10,6 +10,7 @@ import {
 } from "assets/ui/ui-controls";
 
 import { fadeInControl, fadeInUI } from "assets/ui/animations";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 import * as V from "verses";
 import { ControlsLayout, ControlsType, VerseConfig } from "verses/verse.types";
@@ -112,8 +113,8 @@ export const useControlsUI = ({ show, verseId }: IUseControlsUI) => {
         if (!show) return;
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("UI-Controls");
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         fadeInUI(ui);

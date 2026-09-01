@@ -10,8 +10,7 @@ import {
 import { Nullable } from "types/common";
 import { disposeLeftoverCameraPostProcesses } from "utils/babylon";
 
-/** Reference width where base aberrationAmount looks correct (2560×1440). */
-const CHROMATIC_ABERRATION_REF_WIDTH = 2560;
+import { REFERENCE_WIDTH } from "core_constants";
 
 export class RenderingPipeline {
     private scene: Scene;
@@ -135,7 +134,7 @@ export class RenderingPipeline {
         ca.screenWidth = width;
         ca.screenHeight = height;
         ca.aberrationAmount =
-            this.chromaticBaseAmount * (width / CHROMATIC_ABERRATION_REF_WIDTH);
+            this.chromaticBaseAmount * (width / REFERENCE_WIDTH);
     }
 
     private clearResizeObserver() {

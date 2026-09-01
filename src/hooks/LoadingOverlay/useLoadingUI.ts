@@ -5,6 +5,7 @@ import { AdvancedDynamicTexture, Control, Image, TextBlock } from "@babylonjs/gu
 import { Nullable } from "types/common";
 
 import { animateTextTyping, stopTextTypingAnimation } from "assets/ui/animations";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 const TEXT_COLOR = "#343128";
 
@@ -65,8 +66,8 @@ export const useLoadingUI = () => {
     useEffect(() => {
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("Loading-Overlay-UI");
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         const logo = new Image("YoRHa-Logo", "textures/ui/title.png");

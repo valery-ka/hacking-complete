@@ -9,6 +9,7 @@ import {
 } from "@babylonjs/gui";
 
 import { isControlAlive, isTextureAlive } from "utils/diagnostics";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 const COLOR_1 = "#D2CCAD";
 const TEXT = "S  Y  S  T  E  M    F  A  I  L  U  R  E";
@@ -23,12 +24,12 @@ export const createHackingFailedUI = (scene: Scene, layer: UtilityLayerRenderer)
 
     uiText.rootContainer.alpha = 0.0;
 
-    uiMain.idealWidth = 2560;
-    uiMain.idealHeight = 1440;
+    uiMain.idealWidth = REFERENCE_WIDTH;
+    uiMain.idealHeight = REFERENCE_HEIGHT;
     uiMain.renderAtIdealSize = true;
 
-    uiText.idealWidth = 2560;
-    uiText.idealHeight = 1440;
+    uiText.idealWidth = REFERENCE_WIDTH;
+    uiText.idealHeight = REFERENCE_HEIGHT;
     uiText.renderAtIdealSize = true;
 
     uiMain.metadata = {};

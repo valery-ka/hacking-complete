@@ -2,6 +2,7 @@ import { Scene } from "@babylonjs/core";
 import { AdvancedDynamicTexture, Control, Rectangle, TextBlock } from "@babylonjs/gui";
 
 import { animateTextTyping, stopTextTypingAnimation } from "./animations";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 const COLOR_BACKDROP = "#1B1712";
 const COLOR_TRACK = "#49463D";
@@ -30,8 +31,8 @@ export const createChapterLoadingOverlay = (
 
     const ui = AdvancedDynamicTexture.CreateFullscreenUI("UI-Chapter-Loading", true, scene);
 
-    ui.idealWidth = 2560;
-    ui.idealHeight = 1440;
+    ui.idealWidth = REFERENCE_WIDTH;
+    ui.idealHeight = REFERENCE_HEIGHT;
     ui.renderAtIdealSize = true;
 
     const backdrop = new Rectangle("chapter-loading-backdrop");

@@ -1,6 +1,8 @@
 import { UtilityLayerRenderer } from "@babylonjs/core";
 import { AdvancedDynamicTexture, Rectangle, Control, TextBlock, Ellipse } from "@babylonjs/gui";
 
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
+
 const COLOR_1 = "#D2CCAD";
 const TEXT = "H  A  C  K  I  N  G    C  O  M  P  L  E  T  E";
 
@@ -11,8 +13,8 @@ export const createHackingCompleteUI = (layer: UtilityLayerRenderer) => {
         layer.utilityLayerScene,
     );
 
-    ui.idealWidth = 2560;
-    ui.idealHeight = 1440;
+    ui.idealWidth = REFERENCE_WIDTH;
+    ui.idealHeight = REFERENCE_HEIGHT;
     ui.renderAtIdealSize = true;
 
     ui.metadata = {};

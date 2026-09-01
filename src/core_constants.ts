@@ -1,3 +1,6 @@
+export const REFERENCE_WIDTH = 2560;
+export const REFERENCE_HEIGHT = 1440;
+
 export const PRIMARY_COLOR_LIGHT = { r: 0.71, g: 0.67, b: 0.53, a: 1.0 };
 export const PRIMARY_COLOR_DARK = { r: 0.24, g: 0.23, b: 0.19, a: 1.0 };
 

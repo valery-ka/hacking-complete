@@ -8,6 +8,8 @@ import {
     Container,
 } from "@babylonjs/gui";
 
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
+
 const COLOR_1 = "#D2CCAD";
 const TEXT = "H  A  C  K  I  N  G    F  I  N  I  S  H  E  D";
 
@@ -25,12 +27,12 @@ export const createHackingFinishedUI = (scene: Scene, layer: UtilityLayerRendere
 
     uiText.rootContainer.alpha = 0.0;
 
-    uiMain.idealWidth = 2560;
-    uiMain.idealHeight = 1440;
+    uiMain.idealWidth = REFERENCE_WIDTH;
+    uiMain.idealHeight = REFERENCE_HEIGHT;
     uiMain.renderAtIdealSize = true;
 
-    uiText.idealWidth = 2560;
-    uiText.idealHeight = 1440;
+    uiText.idealWidth = REFERENCE_WIDTH;
+    uiText.idealHeight = REFERENCE_HEIGHT;
     uiText.renderAtIdealSize = true;
 
     uiMain.metadata = {};

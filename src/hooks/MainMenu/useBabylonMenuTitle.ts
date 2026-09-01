@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { AdvancedDynamicTexture, TextBlock, Control } from "@babylonjs/gui";
 import { fadeInUI, fadeOutUI, animateTextTyping } from "assets/ui/animations";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 interface UseBabylonMenuTitleProps {
     selectedTab: string;
@@ -42,8 +43,8 @@ export const useBabylonMenuTitle = ({ selectedTab, texturesLoaded }: UseBabylonM
 
         const uiTitle = AdvancedDynamicTexture.CreateFullscreenUI("UI-Title");
 
-        uiTitle.idealWidth = 2560;
-        uiTitle.idealHeight = 1440;
+        uiTitle.idealWidth = REFERENCE_WIDTH;
+        uiTitle.idealHeight = REFERENCE_HEIGHT;
 
         uiRef.current = uiTitle;
 

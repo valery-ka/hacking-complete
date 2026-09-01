@@ -10,6 +10,7 @@ import {
     animateButtonSlide,
 } from "assets/ui/tab-button";
 import { createSideMenuTabs } from "assets/ui/side-line";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 interface ITabConfig {
     key: string;
@@ -99,8 +100,8 @@ export const useMenuTabs = ({ texturesLoaded }: IUseMenuTabs) => {
 
         createSideMenuTabs(uiButtons, 30);
 
-        uiButtons.idealWidth = 2560;
-        uiButtons.idealHeight = 1440;
+        uiButtons.idealWidth = REFERENCE_WIDTH;
+        uiButtons.idealHeight = REFERENCE_HEIGHT;
 
         return () => {
             uiButtons.dispose();

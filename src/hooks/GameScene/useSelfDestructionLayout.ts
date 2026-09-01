@@ -8,6 +8,7 @@ import {
     updateTimer,
     updateWiggle,
 } from "assets/ui/self-destruction";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 import { disposeUtilityLayer } from "utils/babylon";
 
 export const useSelfDestructionLayout = () => {
@@ -24,8 +25,8 @@ export const useSelfDestructionLayout = () => {
         const utilityLayer = new UtilityLayerRenderer(scene);
         const ui = createSelfDestructionUI(utilityLayer);
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         const showSelfDestructUI = () => {

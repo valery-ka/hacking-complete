@@ -18,6 +18,7 @@ import { Nullable } from "types/common";
 import { useActiveInputDevice } from "contexts";
 
 import { animateFromLeft, fadeInControl, fadeOutControl } from "assets/ui/animations";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 interface IUseMenuHint {
     selectedTab: string;
@@ -34,8 +35,8 @@ export const useMenuHint = ({ selectedTab }: IUseMenuHint) => {
     useEffect(() => {
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("UI-Menu-Hints");
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         const mainContainer = new Rectangle("ui-menu-container-hints");

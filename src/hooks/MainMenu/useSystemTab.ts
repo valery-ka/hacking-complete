@@ -13,7 +13,7 @@ import { useAudioEngine, useEngineContext } from "contexts";
 import { createSideLineVersesTab } from "assets/ui/side-line";
 import { fadeInUI } from "assets/ui/animations";
 
-import { LS_KEYS } from "core_constants";
+import { LS_KEYS, REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 import { getAutoAimDifficulty } from "utils/autoAim";
 import {
     applyPhysicsSubsteps,
@@ -182,8 +182,8 @@ export const useSystemTab = ({ selectedTab, texturesLoaded, setHintText }: IUseS
 
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("UI-System");
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         const mainContainer = new Rectangle("ui-main-container-system");

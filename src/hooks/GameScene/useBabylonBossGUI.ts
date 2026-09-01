@@ -4,6 +4,7 @@ import { useEngineContext, useVersesContext } from "contexts";
 import { AdvancedDynamicTexture } from "@babylonjs/gui";
 
 import { createHPBar } from "assets/ui/hp-bar";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 
 export const useBabylonBossGUI = () => {
     const { engineSceneRef } = useEngineContext();
@@ -18,8 +19,8 @@ export const useBabylonBossGUI = () => {
 
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("UI-Boss-HP-Bar");
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         const hpContainer = createHPBar(ui);

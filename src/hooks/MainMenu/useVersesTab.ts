@@ -24,6 +24,7 @@ import {
     stopTextTypingAnimation,
 } from "assets/ui/animations";
 import { breadcrumb } from "utils/diagnostics";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 import {
     ChapterLoadingOverlay,
     createChapterLoadingOverlay,
@@ -143,8 +144,8 @@ export const useVersesTab = ({ selectedTab, texturesLoaded, setHintText }: IUseV
 
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("UI-Verses");
 
-        ui.idealWidth = 2560;
-        ui.idealHeight = 1440;
+        ui.idealWidth = REFERENCE_WIDTH;
+        ui.idealHeight = REFERENCE_HEIGHT;
         ui.renderAtIdealSize = true;
 
         const mainContainer = new StackPanel("main-container");

@@ -1,6 +1,8 @@
 import { UtilityLayerRenderer } from "@babylonjs/core";
 import { AdvancedDynamicTexture, Rectangle, Control, TextBlock } from "@babylonjs/gui";
 
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
+
 const COLOR_1 = "#D2CCAD";
 const TEXT = "S  Y  S  T  E  M    I  N  T  E  R  R  U  P  T  I  O  N";
 const CURSOR_TEXT = "_";
@@ -12,8 +14,8 @@ export const createPauseUI = (layer: UtilityLayerRenderer) => {
         layer.utilityLayerScene,
     );
 
-    ui.idealWidth = 2560;
-    ui.idealHeight = 1440;
+    ui.idealWidth = REFERENCE_WIDTH;
+    ui.idealHeight = REFERENCE_HEIGHT;
     ui.renderAtIdealSize = true;
 
     ui.metadata = {};

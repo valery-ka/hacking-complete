@@ -1,9 +1,21 @@
-import { GlowLayer, HighlightLayer, StandardMaterial, Color3 } from "@babylonjs/core";
+import {
+    AbstractEngine,
+    GlowLayer,
+    HighlightLayer,
+    Observer,
+    StandardMaterial,
+    Color3,
+} from "@babylonjs/core";
 import { disposeEffectLayer } from "utils/babylon";
 
 import { useEffect } from "react";
 import { useEngineContext, useVersesContext } from "contexts";
+import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 import { Nullable } from "types/common";
+
+/** Blur settings tuned for REFERENCE_WIDTH × REFERENCE_HEIGHT. */
+const GLOW_SUB_BLUR_KERNEL_SIZE_REF = 128;
+const HIGHLIGHT_BLUR_SIZE_REF = 1.5;
 
 const glowMeshNamePatterns = [
     "player-bullet",
@@ -48,7 +60,6 @@ export const useBabylonEffectLayers = () => {
             camera: scene.metadata.cameras[0],
         });
         glowLayerPlayer1Sub.intensity = 5.0;
-        glowLayerPlayer1Sub.blurKernelSize = 128;
 
         glowLayerPlayer1Sub.customEmissiveColorSelector = function (
             mesh,
@@ -71,8 +82,6 @@ export const useBabylonEffectLayers = () => {
             camera: scene.metadata.cameras[0],
         });
         highlightLayerPlayer1.innerGlow = false;
-        highlightLayerPlayer1.blurHorizontalSize = 1.5;
-        highlightLayerPlayer1.blurVerticalSize = 1.5;
 
         let glowLayerPlayer2Main: Nullable<GlowLayer> = null;
         let glowLayerPlayer2Sub: Nullable<GlowLayer> = null;
@@ -107,7 +116,6 @@ export const useBabylonEffectLayers = () => {
                 camera: scene.metadata.cameras[1],
             });
             glowLayerPlayer2Sub.intensity = 5.0;
-            glowLayerPlayer2Sub.blurKernelSize = 128;
 
             glowLayerPlayer2Sub.customEmissiveColorSelector = function (
                 mesh,
@@ -132,9 +140,37 @@ export const useBabylonEffectLayers = () => {
                 camera: scene.metadata.cameras[1],
             });
             highlightLayerPlayer2.innerGlow = false;
-            highlightLayerPlayer2.blurHorizontalSize = 1.5;
-            highlightLayerPlayer2.blurVerticalSize = 1.5;
         }
+
+        const applyResolutionScaledEffectLayerBlur = () => {
+            const engine = scene.getEngine();
+            const widthScale = engine.getRenderWidth() / REFERENCE_WIDTH;
+            const heightScale = engine.getRenderHeight() / REFERENCE_HEIGHT;
+
+            const scaledGlowBlurKernel = Math.max(
+                1,
+                Math.round(GLOW_SUB_BLUR_KERNEL_SIZE_REF * widthScale),
+            );
+            const scaledHighlightBlurH = HIGHLIGHT_BLUR_SIZE_REF * widthScale;
+            const scaledHighlightBlurV = HIGHLIGHT_BLUR_SIZE_REF * heightScale;
+
+            glowLayerPlayer1Sub.blurKernelSize = scaledGlowBlurKernel;
+            highlightLayerPlayer1.blurHorizontalSize = scaledHighlightBlurH;
+            highlightLayerPlayer1.blurVerticalSize = scaledHighlightBlurV;
+
+            if (glowLayerPlayer2Sub && highlightLayerPlayer2) {
+                glowLayerPlayer2Sub.blurKernelSize = scaledGlowBlurKernel;
+                highlightLayerPlayer2.blurHorizontalSize = scaledHighlightBlurH;
+                highlightLayerPlayer2.blurVerticalSize = scaledHighlightBlurV;
+            }
+        };
+
+        applyResolutionScaledEffectLayerBlur();
+
+        const resizeObserver: Nullable<Observer<AbstractEngine>> =
+            scene.getEngine().onResizeObservable.add(() => {
+                applyResolutionScaledEffectLayerBlur();
+            });
 
         const effectsObserver = scene.onBeforeCameraRenderObservable.add((camera) => {
             const isDisabled = scene.metadata.effects.disable_effect_layers;
@@ -197,6 +233,10 @@ export const useBabylonEffectLayers = () => {
             });
 
             scene.onBeforeCameraRenderObservable.remove(effectsObserver);
+
+            if (resizeObserver) {
+                scene.getEngine().onResizeObservable.remove(resizeObserver);
+            }
         };
     }, [currentVerseConfig, restartKey]);
 };
