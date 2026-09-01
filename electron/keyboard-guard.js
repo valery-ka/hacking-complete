@@ -1,3 +1,5 @@
+const { toggleBorderlessFullscreen } = require("./fullscreen");
+
 const CHROMIUM_SHORTCUT_CODES = new Set([
     "KeyR",
     "KeyW",
@@ -42,7 +44,7 @@ function attachKeyboardGuard(window) {
 
         if (code === "F11" && !ctrl && !alt) {
             event.preventDefault();
-            window.setFullScreen(!window.isFullScreen());
+            toggleBorderlessFullscreen(window);
             return;
         }
 

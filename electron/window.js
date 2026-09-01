@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { PORT, isDev, getBuildPath } = require("./config");
 const { attachWindowCrashHandlers } = require("./crash-log");
+const { centerWindow, enterBorderlessFullscreen } = require("./fullscreen");
 const { attachKeyboardGuard } = require("./keyboard-guard");
 const { startStaticServer } = require("./static-server");
 
@@ -39,8 +40,8 @@ async function createWindow() {
         minWidth: 960,
         minHeight: 540,
         autoHideMenuBar: true,
-        fullscreen: isDev ? false : true,
         frame: false,
+        thickFrame: false,
         resizable: false,
         backgroundColor: "#1b1712",
         webPreferences: {
@@ -57,7 +58,10 @@ async function createWindow() {
     await window.loadURL(`http://127.0.0.1:${PORT}`);
 
     if (isDev) {
+        centerWindow(window);
         window.webContents.openDevTools({ mode: "detach" });
+    } else {
+        enterBorderlessFullscreen(window);
     }
 
     window.on("closed", () => {
