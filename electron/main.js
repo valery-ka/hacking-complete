@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const { registerAppCrashHandlers } = require("./crash-log");
+const { unregisterMainProcessShortcuts } = require("./keyboard-guard");
 const { createWindow, stopStaticServer } = require("./window");
 
 // Allow Web Audio / Babylon unlock without a prior click (Chromium autoplay policy).
@@ -38,6 +39,7 @@ if (!gotLock) {
     });
 
     app.on("before-quit", () => {
+        unregisterMainProcessShortcuts();
         stopStaticServer();
     });
 }

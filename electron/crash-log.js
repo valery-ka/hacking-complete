@@ -4,6 +4,9 @@ const os = require("os");
 const path = require("path");
 
 const MAX_BREADCRUMBS = 80;
+const MAX_AUTO_RELOADS = 5;
+const AUTO_RELOAD_WINDOW_MS = 60_000;
+const AUTO_RELOAD_REASONS = new Set(["crashed", "killed", "oom", "abnormal-exit"]);
 
 /** @type {Array<{ t: string, e: string, d?: unknown }>} */
 let breadcrumbs = [];
@@ -153,10 +156,58 @@ function registerAppCrashHandlers() {
     });
 }
 
+function createAutoReloadGuard() {
+    /** @type {number[]} */
+    const timestamps = [];
+
+    return {
+        canReload() {
+            const now = Date.now();
+
+            while (timestamps.length > 0 && now - timestamps[0] > AUTO_RELOAD_WINDOW_MS) {
+                timestamps.shift();
+            }
+
+            if (timestamps.length >= MAX_AUTO_RELOADS) {
+                return false;
+            }
+
+            timestamps.push(now);
+            return true;
+        },
+        reset() {
+            timestamps.length = 0;
+        },
+    };
+}
+
+function scheduleRendererReload(window, reason) {
+    const { webContents } = window;
+
+    setImmediate(() => {
+        if (window.isDestroyed() || webContents.isDestroyed()) {
+            return;
+        }
+
+        try {
+            logCrash("render-process-gone:auto-reload", { reason });
+            webContents.reloadIgnoringCache();
+        } catch (error) {
+            logCrash("render-process-gone:auto-reload-failed", error);
+        }
+    });
+}
+
 /**
  * @param {import("electron").BrowserWindow} window
  */
 function attachWindowCrashHandlers(window) {
+    const autoReloadGuard = createAutoReloadGuard();
+
+    window.webContents.on("did-finish-load", () => {
+        autoReloadGuard.reset();
+    });
+
     window.webContents.on("render-process-gone", (_event, details) => {
         logCrash("render-process-gone", {
             reason: details.reason,
@@ -165,6 +216,20 @@ function attachWindowCrashHandlers(window) {
             url: window.webContents.getURL(),
             ...collectRuntimeInfo(),
         });
+
+        if (!AUTO_RELOAD_REASONS.has(details.reason)) {
+            return;
+        }
+
+        if (!autoReloadGuard.canReload()) {
+            logCrash("render-process-gone:auto-reload-aborted", {
+                reason: details.reason,
+                message: "auto-reload rate limit reached",
+            });
+            return;
+        }
+
+        scheduleRendererReload(window, details.reason);
     });
 
     window.webContents.on("unresponsive", () => {
