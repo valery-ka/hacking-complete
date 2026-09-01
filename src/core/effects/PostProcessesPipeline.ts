@@ -74,8 +74,8 @@ export class PostProcessesPipeline {
 
     private createRGBPostProcess() {
         this.rgbPostProcess = new PostProcess(
-            "rgb",
-            "rgb",
+            "customRgb",
+            "customRgb",
             ["time"],
             null,
             1.0,

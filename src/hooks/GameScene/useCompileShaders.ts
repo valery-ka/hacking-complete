@@ -18,7 +18,7 @@ export const useCompileShaders = () => {
         Effect.ShadersStore["squareShatterFragmentShader"] = SHADERS.SQUARE_SHATTER_SHADER;
         Effect.ShadersStore["transitionFragmentShader"] = SHADERS.TRANSITION_SHADER;
         Effect.ShadersStore["customRadialBlurFragmentShader"] = SHADERS.RADIAL_BLUR_SHADER;
-        Effect.ShadersStore["rgbFragmentShader"] = SHADERS.RGB_SHADER;
+        Effect.ShadersStore["customRgbFragmentShader"] = SHADERS.RGB_SHADER;
 
         // nodes effects
         Effect.ShadersStore["ringEffectVertexShader"] = SHADERS.RING_EFFECT_VX;
