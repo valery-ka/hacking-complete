@@ -26,3 +26,12 @@ HaсK [C]omplete is an unofficial fan project. NieR:Automata and related
 names are trademarks of Square Enix, PlatinumGames, and/or their licensors.
 This project is not affiliated with, endorsed by, or sponsored by those
 parties.
+
+---
+
+Third-party
+
+ToneFilter VST (used to process audio for this project)
+https://github.com/Themaister/ToneFilterVST
+Copyright (c) 2023 Hans-Kristian Arntzen
+Licensed under the MIT License.

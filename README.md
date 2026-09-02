@@ -250,6 +250,12 @@ That is the access-violation workaround. Prefer the browser or Docker build. See
 
 ---
 
+## Credits
+
+Audio for this project was processed with **ToneFilter VST**, a recreation of the *NieR:Automata* tone filter by [Themaister](https://github.com/Themaister) ([ToneFilterVST](https://github.com/Themaister/ToneFilterVST), MIT).
+
+---
+
 ## License
 
 Code in this repository is released under the [MIT License](LICENSE).
