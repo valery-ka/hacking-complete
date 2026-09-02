@@ -57,8 +57,6 @@ export class Triggers {
 
     private debug: boolean = false;
 
-    private boundManualFinish: ((e: KeyboardEvent) => void) | null = null;
-
     constructor(scene: Scene, invTriggers: InvisibleTriggerConfig[], finishPool: number) {
         this.scene = scene;
         this.players = scene.metadata.players;
@@ -68,19 +66,7 @@ export class Triggers {
         this.invTriggers = invTriggers;
         this.createInvisibleTriggers();
 
-        if (process.env.NODE_ENV === "development") {
-            this.boundManualFinish = (e: KeyboardEvent) => this.manualFinish(e);
-            document.addEventListener("keydown", this.boundManualFinish);
-        }
-
         this.scene.metadata = { ...this.scene.metadata, triggers_class: this };
-    }
-
-    private manualFinish(e: KeyboardEvent) {
-        if (e.code === "F3") {
-            e.preventDefault();
-            this.activateEnemyPool([], this.finishPool);
-        }
     }
 
     public createInvisibleTriggers() {
@@ -388,10 +374,5 @@ export class Triggers {
 
         this.musicConfig = null;
         this.initialMusicVolume = {};
-
-        if (this.boundManualFinish) {
-            document.removeEventListener("keydown", this.boundManualFinish);
-            this.boundManualFinish = null;
-        }
     }
 }

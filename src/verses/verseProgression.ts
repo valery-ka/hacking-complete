@@ -5,24 +5,14 @@ export type ChapterLabel =
     | "◼ CHAPTER  02"
     | "◼ CHAPTER  03"
     | "◼ CHAPTER  04"
-    | "◼ CHAPTER  05"
-    | "◼ CHAPTER   I"
-    | "◼ CHAPTER  II"
-    | "◼ CHAPTER III"
-    | "◼ CHAPTER  IV"
-    | "◼ CHAPTER   V";
+    | "◼ CHAPTER  05";
 
 export const versesLayout: Readonly<Record<ChapterLabel, readonly string[]>> = {
-    "◼ CHAPTER  01": ["00", "01", "02", "03", "04", "05", "06", "07", "09", "51", "10"], // no leaks
-    "◼ CHAPTER  02": ["11", "12", "13", "14", "15", "16", "17", "18", "19", "52", "21"], // no leaks
-    "◼ CHAPTER  03": ["22", "23", "24", "25", "26", "27", "28", "29", "30", "47", "32"], // no leaks
-    "◼ CHAPTER  04": ["33", "34", "35", "36", "37", "38", "39", "40", "44", "48", "43"], // no leaks
-    "◼ CHAPTER  05": ["08", "20", "41", "42", "31", "45", "46", "49", "50", "53", "54"], // no leaks
-    "◼ CHAPTER   I": ["55", "56", "57", "59", "58"], // no leaks
-    "◼ CHAPTER  II": ["62", "61", "60", "64", "63"], // no leaks
-    "◼ CHAPTER III": ["65", "66", "67", "68", "69", "71", "70"],  // potential leaks
-    "◼ CHAPTER  IV": ["72", "73", "74", "75", "77", "76"], // no leaks
-    "◼ CHAPTER   V": ["78", "79", "80", "81", "83", "82"], // no leaks
+    "◼ CHAPTER  01": ["00", "01", "02", "03", "04", "05", "06", "07", "09", "51", "10"],
+    "◼ CHAPTER  02": ["11", "12", "13", "14", "15", "16", "17", "18", "19", "52", "21"],
+    "◼ CHAPTER  03": ["22", "23", "24", "25", "26", "27", "28", "29", "30", "47", "32"],
+    "◼ CHAPTER  04": ["33", "34", "35", "36", "37", "38", "39", "40", "44", "48", "43"],
+    "◼ CHAPTER  05": ["08", "20", "41", "42", "31", "45", "46", "49", "50", "53", "54"],
 };
 
 export const VERSES_ORDER = Object.freeze(Object.values(versesLayout).flat());

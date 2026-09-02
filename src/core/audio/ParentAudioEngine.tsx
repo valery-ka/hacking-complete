@@ -22,6 +22,11 @@ export abstract class ParentAudioEngine {
     protected soundPoolLastPlayed: Map<string, string> = new Map();
     protected spatialAudioEnabled: boolean = true;
     protected categoryPrefix: string;
+    protected onSoundLoaded?: () => void;
+
+    public setOnSoundLoaded(handler?: () => void) {
+        this.onSoundLoaded = handler;
+    }
 
     constructor(categoryPrefix: string) {
         this.categoryPrefix = categoryPrefix;
@@ -38,9 +43,13 @@ export abstract class ParentAudioEngine {
         if (!targetEngine) return;
 
         const fullSoundName = `${this.categoryPrefix}_${name}`;
-        const sound = await CreateSoundAsync(fullSoundName, path, options, targetEngine);
-        this.sounds.set(name, sound);
-        this.soundCooldowns.set(name, cooldown);
+        try {
+            const sound = await CreateSoundAsync(fullSoundName, path, options, targetEngine);
+            this.sounds.set(name, sound);
+            this.soundCooldowns.set(name, cooldown);
+        } finally {
+            this.onSoundLoaded?.();
+        }
     }
 
     public setSpatialAudioEnabled(enabled: boolean): void {

@@ -95,20 +95,6 @@ export const useVerseSwitcher = () => {
         const musicEngine = scene.metadata.audio_engine?.getMusicAudio();
         const songName = currentVerseConfig?.music?.name;
 
-        const handleKeyDown =
-            process.env.NODE_ENV === "development"
-                ? (e: KeyboardEvent) => {
-                      if (e.code !== "NumpadSubtract") return;
-                      e.preventDefault();
-                      musicEngine?.stopChapterSong(
-                          songName ?? "",
-                          currentVerseConfig?.music?.fade_out_duration ?? 0,
-                      );
-                      setGameState("menu");
-                      setIsPaused(false);
-                  }
-                : null;
-
         let observer: Observer<Scene> | undefined;
         const isFinalVerse = currentVerseConfig.settings.is_final_verse;
         const returnToMenu = currentVerseConfig.settings.return_to_menu;
@@ -283,30 +269,13 @@ export const useVerseSwitcher = () => {
         scene.metadata.callbacks = {
             ...scene.metadata.callbacks,
             swicth_verse: () => switchToNextVerse(),
-            back_to_menu: () => {
-                musicEngine?.stopChapterSong(
-                    songName ?? "",
-                    currentVerseConfig?.music?.fade_out_duration ?? 0,
-                );
-                scene.metadata.suspendRendering = true;
-                scene.getEngine()?.stopRenderLoop();
-                disposeMenuTexture(menuTextureRef);
-                setGameState("menu");
-            },
         };
 
         scene.metadata.controlsLockedRef = controlsLockedRef;
 
-        if (handleKeyDown) {
-            document.addEventListener("keydown", handleKeyDown);
-        }
-
         return () => {
             ui.dispose();
             disposeUtilityLayer(utilityLayer);
-            if (handleKeyDown) {
-                document.removeEventListener("keydown", handleKeyDown);
-            }
 
             timerObservers.forEach((timerObserver) => {
                 if (timerObserver) scene.onBeforeRenderObservable.remove(timerObserver);

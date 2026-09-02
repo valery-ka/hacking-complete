@@ -15,6 +15,7 @@ interface AudioContextType {
     setAudioEngineLoaded: React.Dispatch<React.SetStateAction<boolean>>;
     audioLoaded: boolean;
     setAudioLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+    audioLoadProgress: number;
 }
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
@@ -25,6 +26,7 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
     const [audioEngineLoaded, setAudioEngineLoaded] = useState<boolean>(false);
 
     const [audioLoaded, setAudioLoaded] = useState<boolean>(false);
+    const [audioLoadProgress, setAudioLoadProgress] = useState(0);
     const receivedMessagesRef = useRef<Set<string>>(new Set());
 
     const audioManagerRef = useRef<AudioManager | null>(null);
@@ -38,12 +40,19 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
         const allReceived = MESSAGES.every((msg) => receivedMessagesRef.current.has(msg));
 
         if (allReceived) {
+            setAudioLoadProgress(100);
             setAudioLoaded(true);
         }
     };
 
     useEffect(() => {
-        const audioManager = new AudioManager((message: string) => getMessage(message));
+        const audioManager = new AudioManager(
+            (message: string) => getMessage(message),
+            (loaded, total) => {
+                const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
+                setAudioLoadProgress(Math.max(0, Math.min(100, percent)));
+            },
+        );
 
         audioManager.initialize().then(() => {
             audioManagerRef.current = audioManager;
@@ -62,6 +71,7 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
                 setAudioEngineLoaded,
                 audioLoaded,
                 setAudioLoaded,
+                audioLoadProgress,
             }}
         >
             {children}

@@ -10,6 +10,8 @@ import { VoiceAudioEngine } from "./VoiceAudioEngine";
 
 import { LS_KEYS } from "core_constants";
 
+export type AudioLoadProgressHandler = (loaded: number, total: number) => void;
+
 export class AudioManager {
     private sharedSFXEngine: Nullable<AudioEngineV2> = null;
     private musicAudioEngine: Nullable<AudioEngineV2> = null;
@@ -23,13 +25,21 @@ export class AudioManager {
     private enemyAudio: EnemyAudioEngine;
 
     private callback?: (message: string) => void;
+    private onLoadProgress?: AudioLoadProgressHandler;
+    private bootSoundsLoaded = 0;
+    private readonly bootSoundsTotal =
+        CommonAudioEngine.BOOT_SOUND_COUNT +
+        PlayerAudioEngine.BOOT_SOUND_COUNT +
+        EnemyAudioEngine.BOOT_SOUND_COUNT +
+        VoiceAudioEngine.BOOT_SOUND_COUNT +
+        MusicAudioEngine.BOOT_SOUND_COUNT;
     private spatialAudioEnabled: boolean = true;
 
     /** Runtime-only SFX scale (e.g. final-verse fade). Never persisted; settings stay independent. */
     private sfxVolumeMultiplier: number = 1;
     private sfxFadeRafId: number | null = null;
 
-    constructor(callback?: (message: string) => void) {
+    constructor(callback?: (message: string) => void, onLoadProgress?: AudioLoadProgressHandler) {
         this.commonAudio = new CommonAudioEngine("common");
         this.playerAudio = new PlayerAudioEngine("player");
         this.enemyAudio = new EnemyAudioEngine("enemy");
@@ -38,9 +48,23 @@ export class AudioManager {
         this.voiceAudio = new VoiceAudioEngine("voice");
 
         this.callback = callback;
+        this.onLoadProgress = onLoadProgress;
     }
 
     public async initialize(): Promise<void> {
+        const onSoundLoaded = () => {
+            this.bootSoundsLoaded += 1;
+            this.onLoadProgress?.(this.bootSoundsLoaded, this.bootSoundsTotal);
+        };
+
+        this.commonAudio.setOnSoundLoaded(onSoundLoaded);
+        this.playerAudio.setOnSoundLoaded(onSoundLoaded);
+        this.enemyAudio.setOnSoundLoaded(onSoundLoaded);
+        this.voiceAudio.setOnSoundLoaded(onSoundLoaded);
+        this.musicAudio.setOnSoundLoaded(onSoundLoaded);
+
+        this.onLoadProgress?.(0, this.bootSoundsTotal);
+
         this.sharedSFXEngine = await CreateAudioEngineAsync({
             volume: this.getEffectiveSharedSFXVolume(),
             disableDefaultUI: true,

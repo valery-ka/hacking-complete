@@ -1,6 +1,8 @@
 import { ParentAudioEngine } from "./ParentAudioEngine";
 
 export class PlayerAudioEngine extends ParentAudioEngine {
+    public static readonly BOOT_SOUND_COUNT = 7;
+
     protected async loadSounds(callback?: (message: string) => void): Promise<void> {
         if (!this.audioEngine) return;
 

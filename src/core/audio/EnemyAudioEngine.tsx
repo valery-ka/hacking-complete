@@ -1,6 +1,8 @@
 import { ParentAudioEngine } from "./ParentAudioEngine";
 
 export class EnemyAudioEngine extends ParentAudioEngine {
+    public static readonly BOOT_SOUND_COUNT = 15;
+
     protected async loadSounds(callback?: (message: string) => void): Promise<void> {
         if (!this.audioEngine) return;
 

@@ -7,6 +7,8 @@ const DOD1_VOICE_COUNT = 7;
 const DOD1_VOICE_POOL_ID = "audio_dod1_pool";
 
 export class VoiceAudioEngine extends ParentAudioEngine {
+    public static readonly BOOT_SOUND_COUNT = 54;
+
     protected async loadSounds(callback?: (message: string) => void): Promise<void> {
         if (!this.audioEngine) return;
 

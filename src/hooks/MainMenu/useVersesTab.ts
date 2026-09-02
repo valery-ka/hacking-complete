@@ -108,7 +108,10 @@ export const useVersesTab = ({ selectedTab, texturesLoaded, setHintText }: IUseV
         menuLockedRef.current = true;
         breadcrumb("menu.startGame.begin", { verse: verseToStart });
 
-        await loadChapterMusic(verseToStart, scene);
+        const musicEngine = audioManagerRef.current?.getMusicAudio();
+        if (!musicEngine?.isRadioModeEnabled()) {
+            await loadChapterMusic(verseToStart, scene);
+        }
         breadcrumb("menu.startGame.musicReady", { verse: verseToStart });
 
         if (engine && scene && scene.activeCamera) {

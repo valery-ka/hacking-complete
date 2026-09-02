@@ -3,7 +3,7 @@ const path = require("path");
 
 const SAMPLE_ASSETS = [
     "public/sounds/sfx/ui_button_select.mp3",
-    "public/sounds/music/list_main.json",
+    "public/sounds/music/list_radio.json",
     "public/textures/game_textures.json",
 ];
 

@@ -10,10 +10,12 @@ import { REFERENCE_HEIGHT, REFERENCE_WIDTH } from "core_constants";
 const TEXT_COLOR = "#343128";
 
 const LOADING_MESSAGE = "B O O T I N G   S Y S T E M";
-const LOADED_MESSAGE = "P R E S S   A N Y   BUTTON";
+const LOADED_MESSAGE = "P R E S S   L E F T   M O U S E   BUTTON";
 
 const TYPING_SPEED_MS = 50;
 const POST_BOOT_DELAY_MS = 600;
+
+const formatBootingMessage = (percent: number) => `${LOADING_MESSAGE}  (${percent}%)`;
 
 const startListeningForDismiss = (onDismiss: () => void): (() => void) => {
     let dismissed = false;
@@ -59,9 +61,13 @@ export const useLoadingUI = () => {
     const audioLoadedRef = useRef(false);
     const bootingDoneRef = useRef(false);
     const loadedSequenceStartedRef = useRef(false);
-    const tryStartLoadedSequenceRef = useRef<() => void>(() => {});
+    const tryStartLoadedSequenceRef = useRef<() => void>(() => { });
+    const progressRef = useRef(0);
 
-    const { audioLoaded, audioManagerRef, setAudioEngineLoaded } = useAudioEngine();
+    const { audioLoaded, audioLoadProgress, audioManagerRef, setAudioEngineLoaded } =
+        useAudioEngine();
+
+    progressRef.current = audioLoadProgress;
 
     useEffect(() => {
         const ui = AdvancedDynamicTexture.CreateFullscreenUI("Loading-Overlay-UI");
@@ -116,6 +122,10 @@ export const useLoadingUI = () => {
 
             loadedSequenceStartedRef.current = true;
 
+            if (textRef.current) {
+                textRef.current.text = formatBootingMessage(100);
+            }
+
             delayTimer = setTimeout(() => {
                 if (cancelled || !textRef.current) return;
 
@@ -135,6 +145,9 @@ export const useLoadingUI = () => {
             speed: TYPING_SPEED_MS,
             onComplete: () => {
                 bootingDoneRef.current = true;
+                if (textRef.current) {
+                    textRef.current.text = formatBootingMessage(progressRef.current);
+                }
                 tryStartLoadedSequence();
             },
         });
@@ -155,4 +168,11 @@ export const useLoadingUI = () => {
         audioLoadedRef.current = true;
         tryStartLoadedSequenceRef.current();
     }, [audioLoaded]);
+
+    useEffect(() => {
+        if (!bootingDoneRef.current || loadedSequenceStartedRef.current) return;
+        if (!textRef.current) return;
+
+        textRef.current.text = formatBootingMessage(audioLoadProgress);
+    }, [audioLoadProgress]);
 };

@@ -9,7 +9,6 @@ export interface GamepadInputState {
 }
 
 const X_BUTTON = 2; // Xbox X / PlayStation Square
-const BACK_BUTTON = 8;
 const START_BUTTON = 9;
 
 const DPAD_UP_BUTTON = 12;
@@ -51,10 +50,6 @@ export class GamepadInputManager {
 
             if (button === START_BUTTON) {
                 this.scene.metadata?.callbacks?.toggle_game_pause?.();
-            } else if (button === BACK_BUTTON) {
-                if (process.env.NODE_ENV === "development") {
-                    this.scene.metadata?.callbacks?.back_to_menu?.();
-                }
             } else if (button === X_BUTTON) {
                 this.scene.metadata?.callbacks?.toggle_auto_aim?.();
             }

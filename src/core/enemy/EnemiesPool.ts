@@ -17,12 +17,6 @@ import { EnemyCheer } from "./models/EnemyCheer";
 import { EnemyKamikaze } from "./models/EnemyKamikaze";
 import { EnemyRocket } from "./models/EnemyRocket";
 
-import { Simone } from "../bosses/Simone/Simone";
-import { Shadowlord } from "core/bosses/Shadowlord/Shadowlord";
-import { Zero } from "core/bosses/Zero/Zero";
-import { Manah } from "core/bosses/Manah/Manah";
-import { Queen } from "core/bosses/Queen/Queen";
-
 export class EnemiesPool {
     private scene: Scene;
     private enemies: EnemySphere[] &
@@ -38,12 +32,7 @@ export class EnemiesPool {
         EnemyRabbit[] &
         EnemyCheer[] &
         EnemyKamikaze[] &
-        EnemyRocket[] &
-        Simone[] &
-        Shadowlord[] &
-        Zero[] &
-        Manah[] &
-        Queen[] = [];
+        EnemyRocket[] = [];
 
     constructor(scene: Scene) {
         this.scene = scene;
@@ -100,21 +89,6 @@ export class EnemiesPool {
                     this.enemies.push(enemyInstance);
                 } else if (enemy_type === "rocket") {
                     const enemyInstance = new EnemyRocket(this.scene, enemy_config);
-                    this.enemies.push(enemyInstance);
-                } else if (enemy_type === "simone") {
-                    const enemyInstance = new Simone(this.scene, enemy_config, index);
-                    this.enemies.push(enemyInstance);
-                } else if (enemy_type === "shadowlord") {
-                    const enemyInstance = new Shadowlord(this.scene, enemy_config, index);
-                    this.enemies.push(enemyInstance);
-                } else if (enemy_type === "zero") {
-                    const enemyInstance = new Zero(this.scene, enemy_config, index);
-                    this.enemies.push(enemyInstance);
-                } else if (enemy_type === "manah") {
-                    const enemyInstance = new Manah(this.scene, enemy_config, index);
-                    this.enemies.push(enemyInstance);
-                } else if (enemy_type === "queen") {
-                    const enemyInstance = new Queen(this.scene, enemy_config, index);
                     this.enemies.push(enemyInstance);
                 }
             }

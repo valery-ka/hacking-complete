@@ -1,11 +1,9 @@
 import {
     AbstractSound,
     AudioParameterRampShape,
-    CreateStreamingSoundAsync,
     IStaticSoundOptions,
     Observable,
     Scene,
-    StreamingSound,
     setAndStartTimer,
 } from "@babylonjs/core";
 import { ParentAudioEngine } from "./ParentAudioEngine";
@@ -17,8 +15,6 @@ import {
 } from "types/music/MusicConfig.types";
 
 import { LS_KEYS } from "core_constants";
-
-import { Nullable } from "types/common";
 
 import { alwaysResidentMusic, getChapterMusicPaths } from "verses/chapterMusic";
 import { ChapterLabel } from "verses/verseProgression";
@@ -115,7 +111,6 @@ export class MusicAudioEngine extends ParentAudioEngine {
 
     private routeAllSounds() {
         this.sounds.forEach((sound) => this.routeSound(sound));
-        this.radioSounds.forEach((sound) => this.routeSound(sound));
     }
 
     /**
@@ -197,46 +192,21 @@ export class MusicAudioEngine extends ParentAudioEngine {
 
     private static readonly loadConcurrency: number = 8;
 
+    /** Keep in sync with public/sounds/music/list_radio.json. */
+    public static readonly BOOT_SOUND_COUNT = 16;
+
     protected async loadSounds(callback?: (message: string) => void): Promise<void> {
         if (!this.audioEngine) return;
-
-        const main = await fetch("sounds/music/list_main.json");
-        const listMain = await main.json();
 
         const radio = await fetch("sounds/music/list_radio.json");
         const listRadio = await radio.json();
 
-        for (let i = 0; i < listMain.music.length; i++) {
-            const musicBlock = listMain.music[i];
-            const durationBlock = listMain.durations[i];
+        this.radioTrackList = listRadio.paths ?? [];
+        this.radioShuffledList = [...this.radioTrackList];
 
-            const chapterKey = Object.keys(musicBlock)[0];
-            const chapterDurations = durationBlock?.[chapterKey];
+        await this.loadPaths(this.radioTrackList);
 
-            if (!chapterDurations) continue;
-
-            this.mapSoundPaths(
-                musicBlock[chapterKey],
-                chapterKey,
-                chapterDurations,
-                this.pathSettings,
-            );
-        }
-
-        this.radioShuffledList = listRadio.paths;
-
-        // Only the menu tracks are decoded up front. Verse music is loaded per chapter and radio
-        // tracks are streamed, because decoding every track at once costs over 6 GB of RAM.
-        await this.loadPaths(alwaysResidentMusic);
-
-        // нормальная темка для того, чтоб знать, сколько зацикливать
-        // this.sounds.forEach((sound: any) => {
-        //     if (sound.name.includes("Menu")) {
-        //         console.log(sound.name, sound._buffer.duration);
-        //     }
-        // });
-
-        this.finalize(alwaysResidentMusic.length, callback);
+        this.finalize(this.radioTrackList.length, callback);
     }
 
     private async createMusicSound(path: string): Promise<void> {
@@ -244,8 +214,8 @@ export class MusicAudioEngine extends ParentAudioEngine {
 
         const settings = this.pathSettings.get(path);
 
-        const options: Partial<IStaticSoundOptions> =
-            settings?.type === "one_shot"
+        const options: Partial<IStaticSoundOptions> = settings
+            ? settings.type === "one_shot"
                 ? {
                     maxInstances: 1,
                     volume: 0.0,
@@ -254,9 +224,14 @@ export class MusicAudioEngine extends ParentAudioEngine {
                 : {
                     maxInstances: 1,
                     volume: 0.0,
-                    loopStart: settings?.loopStart,
-                    loopEnd: settings?.loopEnd,
-                };
+                    loopStart: settings.loopStart,
+                    loopEnd: settings.loopEnd,
+                }
+            : {
+                maxInstances: 1,
+                volume: 0.0,
+                loop: false,
+            };
 
         await this.createSound(path, path, options, this.audioEngine, 0);
         this.routeSound(this.sounds.get(path));
@@ -304,12 +279,16 @@ export class MusicAudioEngine extends ParentAudioEngine {
         });
     }
 
-    /** Stops in-level music without touching always-resident menu tracks. */
+    private getResidentMusicPaths(): Set<string> {
+        return new Set([...alwaysResidentMusic, ...this.radioTrackList]);
+    }
+
+    /** Stops in-level music without touching always-resident radio tracks. */
     private stopChapterMusic() {
         this.clearFadeOutTimeout();
         this.fadeOutDuration = 0;
 
-        const resident = new Set(alwaysResidentMusic);
+        const resident = this.getResidentMusicPaths();
         this.sounds.forEach((sound, path) => {
             if (!resident.has(path)) {
                 this.muteSong(sound);
@@ -329,12 +308,12 @@ export class MusicAudioEngine extends ParentAudioEngine {
     }
 
     /**
-     * Drops decoded chapter tracks when leaving a level; menu tracks stay resident.
+     * Drops decoded chapter tracks when leaving a level; radio tracks stay resident.
      * Runs synchronously so a deferred stopMusic() cannot race playMenuMusic() on menu mount.
      */
     private clearActiveChapter(): void {
         this.stopChapterMusic();
-        this.unloadMusicExcept(new Set(alwaysResidentMusic));
+        this.unloadMusicExcept(this.getResidentMusicPaths());
         this.activeChapter = null;
         this.resetMenuAudioState();
 
@@ -357,7 +336,7 @@ export class MusicAudioEngine extends ParentAudioEngine {
             .then(async () => {
                 const paths = getChapterMusicPaths(chapter);
 
-                this.unloadMusicExcept(new Set([...alwaysResidentMusic, ...paths]));
+                this.unloadMusicExcept(new Set([...this.getResidentMusicPaths(), ...paths]));
                 await this.loadPaths(paths, onProgress);
 
                 this.activeChapter = chapter;
@@ -382,38 +361,34 @@ export class MusicAudioEngine extends ParentAudioEngine {
         );
     }
 
-    // Radio Mode
-    private radioModeValue: string = this.getRadioMode();
+    // Radio Mode — demo build ships radio tracks only, so this cannot be turned off.
+    private radioModeValue: string = "ON";
+    private radioTrackList: string[] = [];
     private radioShuffledList: string[] = [];
-    private radioSounds: Map<string, StreamingSound> = new Map();
     private currentSoundIndex: number = 0;
     private radioGeneration: number = 0;
 
     public getRadioMode(): string {
-        const value = localStorage.getItem(LS_KEYS.RADIO_SETTING);
-        if (!value) return "OFF";
-        return value;
+        return "ON";
     }
 
     public isRadioModeEnabled(): boolean {
         return this.radioModeValue === "ON";
     }
 
-    public setRadioMode(option: string) {
-        localStorage.setItem(LS_KEYS.RADIO_SETTING, option);
-        this.radioModeValue = option;
+    public setRadioMode(_option: string) {
+        this.radioModeValue = "ON";
     }
 
     public initRadioMode() {
+        this.stopRadioMode();
         this.currentSoundIndex = 0;
-        this.radioGeneration++;
-
         this.shuffleRadioList();
-        void this.playRadioMode(this.radioGeneration);
+        this.playRadioMode(this.radioGeneration);
     }
 
     private shuffleRadioList() {
-        const shuffled = [...this.radioShuffledList];
+        const shuffled = [...this.radioTrackList];
 
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -423,83 +398,19 @@ export class MusicAudioEngine extends ParentAudioEngine {
         this.radioShuffledList = shuffled;
     }
 
-    /**
-     * Streaming preload creates MediaElementAudioSourceNode and rewires the audio graph on the main
-     * thread. Run that work during idle time so it does not hitch the render loop.
-     */
-    private deferToIdle(task: () => void) {
-        if (typeof requestIdleCallback !== "undefined") {
-            requestIdleCallback(() => task(), { timeout: 2_000 });
-        } else {
-            setTimeout(task, 0);
-        }
-    }
+    private stopRadioMode() {
+        this.radioGeneration++;
 
-    /**
-     * Radio tracks are streamed rather than decoded: they are full-length songs played start to
-     * finish, with no layers and no loop points, so they gain nothing from an AudioBuffer while
-     * costing ~1.7 GB to hold all at once.
-     */
-    private async createRadioSound(
-        path: string,
-        generation: number,
-        options: { background?: boolean } = {},
-    ): Promise<Nullable<StreamingSound>> {
-        if (!this.audioEngine) return null;
+        this.radioTrackList.forEach((path) => {
+            const sound = this.sounds.get(path);
+            if (!sound) return;
 
-        const existing = this.radioSounds.get(path);
-        if (existing) return existing;
-
-        const sound = await CreateStreamingSoundAsync(
-            `${this.getCategoryPrefix()}_${path}`,
-            path,
-            { volume: 0.0, preloadCount: 1 },
-            this.audioEngine,
-        );
-
-        // Radio was stopped while this stream was still preloading.
-        if (generation !== this.radioGeneration) {
-            this.deferToIdle(() => this.disposeSoundSafely(sound));
-            return null;
-        }
-
-        this.radioSounds.set(path, sound);
-
-        if (options.background) {
-            this.deferToIdle(() => this.routeSound(sound));
-        } else {
-            this.routeSound(sound);
-        }
-
-        return sound;
-    }
-
-    private scheduleRadioPreload(path: string, generation: number) {
-        this.deferToIdle(() => {
-            if (generation !== this.radioGeneration) return;
-            void this.createRadioSound(path, generation, { background: true });
+            sound.onEndedObservable.clear();
+            this.muteSong(sound);
         });
     }
 
-    private disposeRadioSoundsExcept(keep: Set<string>) {
-        Array.from(this.radioSounds.keys())
-            .filter((path) => !keep.has(path))
-            .forEach((path) => {
-                const sound = this.radioSounds.get(path);
-                this.radioSounds.delete(path);
-                if (!sound) return;
-
-                sound.onEndedObservable.clear();
-                this.deferToIdle(() => this.disposeSoundSafely(sound));
-            });
-    }
-
-    private stopRadioMode() {
-        this.radioGeneration++;
-        this.disposeRadioSoundsExcept(new Set());
-    }
-
-    private async playRadioMode(generation: number): Promise<void> {
+    private playRadioMode(generation: number): void {
         if (generation !== this.radioGeneration) return;
         if (!this.inStage || !this.isRadioModeEnabled()) return;
 
@@ -507,32 +418,30 @@ export class MusicAudioEngine extends ParentAudioEngine {
         if (totalSounds === 0) return;
 
         const currentSongPath = this.radioShuffledList[this.currentSoundIndex];
-        const nextSongPath = this.radioShuffledList[(this.currentSoundIndex + 1) % totalSounds];
+        const currentMusic = this.sounds.get(currentSongPath);
 
-        const currentMusic = await this.createRadioSound(currentSongPath, generation);
-
-        if (generation !== this.radioGeneration) return;
         if (!currentMusic || !this.inStage || !this.isRadioModeEnabled()) return;
 
-        this.disposeRadioSoundsExcept(new Set([currentSongPath, nextSongPath]));
+        this.radioTrackList.forEach((path) => {
+            if (path === currentSongPath) return;
+            const sound = this.sounds.get(path);
+            if (!sound) return;
+            sound.onEndedObservable.clear();
+            this.muteSong(sound);
+        });
 
-        // Background preload may defer routing; the playing track must be wired immediately.
         this.routeSound(currentMusic);
-        currentMusic.play();
+        currentMusic.play({ loop: false });
         currentMusic.setVolume(1.0, {
             duration: 0.0,
             shape: AudioParameterRampShape.Linear,
         });
 
         currentMusic.onEndedObservable.clear();
-
         currentMusic.onEndedObservable.addOnce(() => {
             this.currentSoundIndex = (this.currentSoundIndex + 1) % totalSounds;
-            void this.playRadioMode(generation);
+            this.playRadioMode(generation);
         });
-
-        // Warm up the next track while this one plays so the switch has no gap.
-        this.scheduleRadioPreload(nextSongPath, generation);
     }
 
     // Volume
@@ -785,7 +694,10 @@ export class MusicAudioEngine extends ParentAudioEngine {
         this.invalidateChapterPlayback();
         this.fadeOutDuration = 0;
 
-        this.sounds.forEach((sound) => this.muteSong(sound));
+        this.sounds.forEach((sound, path) => {
+            if (!forceStopRadio && this.radioTrackList.includes(path)) return;
+            this.muteSong(sound);
+        });
 
         if (forceStopRadio || !this.isRadioModeEnabled()) {
             this.stopRadioMode();
@@ -1013,6 +925,9 @@ export class MusicAudioEngine extends ParentAudioEngine {
         this.stopRadioMode();
         this.pathSettings.clear();
         this.activeChapter = null;
+
+        this.sounds.forEach((sound) => this.disposeSoundSafely(sound));
+        this.sounds.clear();
 
         super.dispose();
     }

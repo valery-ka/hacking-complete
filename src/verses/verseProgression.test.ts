@@ -41,7 +41,7 @@ describe("verse progression", () => {
         setUnlockAllVersesSetting("ON");
 
         expect(getUnlockedVerseIds()).toEqual(VERSES_ORDER);
-        expect(markVerseCompleted("80")).toBe(false);
+        expect(markVerseCompleted("54")).toBe(false);
 
         setUnlockAllVersesSetting("OFF");
         expect(getUnlockedVerseIds()).toEqual(["00"]);

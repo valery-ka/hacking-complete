@@ -115,23 +115,11 @@ const buttons: IButtonConfig[] = [
         withSlider: true,
     },
     {
-        key: "RADIO",
-        text: "Radio mode",
-        hint: "Play random music from the tracklist",
-        left: "90px",
-        top: "435px",
-        width: "1000px",
-        vAlign: Control.VERTICAL_ALIGNMENT_TOP,
-        hAlign: Control.HORIZONTAL_ALIGNMENT_LEFT,
-        icons_path: ["textures/ui/square_00.png", "textures/ui/square_01.png"],
-        toggleOptions: ["ON", "OFF"],
-    },
-    {
         key: "UNLOCK_ALL_VERSES",
         text: "Unlock All Verses",
         hint: "Unlock every verse without saving progress",
         left: "90px",
-        top: "520px",
+        top: "435px",
         width: "1000px",
         vAlign: Control.VERTICAL_ALIGNMENT_TOP,
         hAlign: Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -143,7 +131,7 @@ const buttons: IButtonConfig[] = [
         text: "Physics substeps",
         hint: "Experimental: Enable, if you have physics issues (if disabled, clipping through walls may occur below 100 FPS)",
         left: "90px",
-        top: "605px",
+        top: "520px",
         width: "1000px",
         vAlign: Control.VERTICAL_ALIGNMENT_TOP,
         hAlign: Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -437,11 +425,6 @@ export const useSystemTab = ({ selectedTab, texturesLoaded, setHintText }: IUseS
         const action = selectedButtonRef.current;
 
         switch (action) {
-            case "RADIO": {
-                const music = audioManagerRef.current?.getMusicAudio();
-                music?.setRadioMode(option);
-                break;
-            }
             case "DIFFICULTY":
                 localStorage.setItem(LS_KEYS.DIFFICULTY, option);
                 break;
@@ -463,7 +446,6 @@ export const useSystemTab = ({ selectedTab, texturesLoaded, setHintText }: IUseS
         if (selectedTab !== "SYSTEM") return;
 
         const audio = audioManagerRef.current;
-        const music = audio?.getMusicAudio();
 
         const onMount = () => {
             const buttons = buttonsRef.current;
@@ -505,9 +487,6 @@ export const useSystemTab = ({ selectedTab, texturesLoaded, setHintText }: IUseS
                     let value = "N/A";
 
                     switch (key) {
-                        case "RADIO":
-                            value = music?.getRadioMode() ?? "OFF";
-                            break;
                         case "DIFFICULTY":
                             value = getAutoAimDifficulty();
                             break;
