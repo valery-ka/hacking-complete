@@ -2,8 +2,14 @@
 FROM node:22.12.0 AS builder
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+
+# postinstall runs scripts/check-lfs.js — copy it before npm ci.
+# LFS files are not in this layer yet; skip the check until COPY . .
+COPY package.json package-lock.json ./
+COPY scripts ./scripts
+ENV SKIP_LFS_CHECK=1
+RUN npm ci
+
 COPY . .
 RUN npm run build
 

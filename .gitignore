@@ -26,6 +26,7 @@ public/sounds/music/radio/lufs/
 /build
 /dist
 /release
+/dist-share
 /out
 
 # misc

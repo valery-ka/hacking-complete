@@ -5,10 +5,21 @@ npm-debug.log
 # build artifacts
 build
 dist
+release
+out
+dist-share
+coverage
 
 # git
 .git
 .gitignore
+
+# local / docs not needed in the image
+.github
+electron
+memory
+dev
+*.md
 
 # docker
 docker-compose*.yml

@@ -1,7 +1,9 @@
 {
     "name": "hacking-complete",
     "version": "1.0.0",
-    "description": "HaсK [C]omplete",
+    "description": "HaсK [C]omplete — open-source Babylon.js NieR:Automata hacking mini-game",
+    "author": "valery-ka",
+    "license": "MIT",
     "private": true,
     "homepage": "./",
     "main": "electron/main.js",
@@ -38,6 +40,8 @@
         "electron:pack": "npm run build && electron-builder --dir",
         "electron:dist": "npm run build && electron-builder",
         "electron:dist:win": "npm run build && electron-builder --win",
+        "electron:dist:linux": "npm run build && electron-builder --linux zip",
+        "electron:dist:mac": "npm run build && electron-builder --mac",
         "verify:setup": "node scripts/check-lfs.js",
         "heap:count": "node scripts/count-heap-class.js"
     },
@@ -63,6 +67,7 @@
         "extends": null,
         "appId": "com.hackingcomplete.game",
         "productName": "HaсK [C]omplete",
+        "executableName": "HackComplete",
         "directories": {
             "output": "release",
             "buildResources": "electron/resources"
@@ -81,6 +86,7 @@
             "build/sounds/**",
             "build/textures/**"
         ],
+        "artifactName": "HackComplete-${version}-${os}-${arch}.${ext}",
         "win": {
             "target": [
                 "nsis",
@@ -89,19 +95,27 @@
         },
         "nsis": {
             "oneClick": false,
-            "allowToChangeInstallationDirectory": true
+            "allowToChangeInstallationDirectory": true,
+            "artifactName": "HackComplete-${version}-win-setup.${ext}"
+        },
+        "portable": {
+            "artifactName": "HackComplete-${version}-win-portable.${ext}"
         },
         "mac": {
             "target": [
                 "dmg"
             ],
-            "category": "public.app-category.games"
+            "category": "public.app-category.games",
+            "artifactName": "HackComplete-${version}-mac-${arch}.${ext}",
+            "identity": null
         },
         "linux": {
             "target": [
-                "AppImage"
+                "AppImage",
+                "zip"
             ],
-            "category": "Game"
+            "category": "Game",
+            "artifactName": "HackComplete-${version}-linux-${arch}.${ext}"
         }
     },
     "devDependencies": {

@@ -1,0 +1,72 @@
+name: Release builds
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            label: Windows
+            script: electron:dist:win
+          - os: ubuntu-latest
+            label: Linux
+            script: electron:dist:linux
+          - os: macos-latest
+            label: macOS
+            script: electron:dist:mac
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Pull Git LFS assets
+        run: git lfs pull
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          SKIP_LFS_CHECK: "1"
+
+      - name: Verify LFS assets
+        run: npm run verify:setup
+
+      - name: Build installer
+        run: npm run ${{ matrix.script }}
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        if: matrix.os != 'ubuntu-latest'
+
+      - name: Build Linux AppImage and zip
+        if: matrix.os == 'ubuntu-latest'
+        run: npm run build && npx electron-builder --linux AppImage zip
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: HackComplete-${{ matrix.label }}
+          if-no-files-found: error
+          path: |
+            release/*.exe
+            release/*.AppImage
+            release/*.dmg
+            release/*.zip
+          retention-days: 30
