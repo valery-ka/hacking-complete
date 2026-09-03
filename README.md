@@ -1,5 +1,7 @@
 # HaсK [C]omplete
 
+[![Donate on DonatePay](https://img.shields.io/badge/Donate-DonatePay-blue)](https://new.donatepay.ru/@1530086)
+
 Open-source **Babylon.js** recreation of the hacking mini-game from *NieR:Automata*.
 
 This is an **early demo**. Gameplay is playable end-to-end (verses, bosses, plane / cylinder / sphere stages, keyboard and gamepad), but the codebase is still a prototype: some systems are duplicated, and the **native desktop build can crash** on verse load or restart. The **browser** build (local dev server or Docker) is the stable way to play.
