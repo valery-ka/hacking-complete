@@ -1,5 +1,7 @@
 # HaсK [C]omplete
 
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/) [![Babylon.js](https://img.shields.io/badge/Babylon.js-8-FFFFFF?style=flat&logo=babylonjs&logoColor=white)](https://www.babylonjs.com/)  [![Electron](https://img.shields.io/badge/Electron-43-47848F?style=flat&logo=electron&logoColor=white)](https://www.electronjs.org/)
+
 [![Donate on DonatePay](https://img.shields.io/badge/Donate-DonatePay-blue)](https://new.donatepay.ru/@1530086)
 
 Open-source **Babylon.js** recreation of the hacking mini-game from *NieR:Automata*.
